@@ -18,6 +18,20 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "data-table-kit": [
+        "dist/data-table-kit"
+      ],
+      "data-table-kit/*": [
+        "dist/data-table-kit/*"
+      ],
+      "data-tree-kit": [
+        "dist/data-tree-kit"
+      ],
+      "data-tree-kit/*": [
+        "dist/data-tree-kit/*"
+      ]
+    }
   }
 }

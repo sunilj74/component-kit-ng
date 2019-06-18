@@ -1,0 +1,14 @@
+<div style="text-align:center">
+  <h1>Angular Component Kit</h1>
+  <h2 class="mt-xs">component-kit-ng</h2>
+  <div class="pt-xl pb-xl">An Angular Library for commonly used UI Components</div>
+</div>
+<nav mat-tab-nav-bar class="pt-xl">
+  <a mat-tab-link *ngFor="let link of navigablePaths" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive"
+    [active]="rla.isActive">
+    {{link.label}}
+  </a>
+</nav>
+<div>
+  <router-outlet></router-outlet>
+</div>
