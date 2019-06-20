@@ -1,0 +1,25 @@
+<div *ngFor="let node of data; let i=index;" [id]="treeId+'_'+rootId">
+    <table style="width: 100%;">
+        <tbody>
+            <tr>
+                <td style="width: 15px;vertical-align: top; color: gray; font-size: smaller;">
+                    <span [ngClass]="'data-tree-'+(node.isClosed==true?'plus':'minus')" (click)="toggleNode($event, node, rootId, treeId, i)"></span>
+                </td>
+                <td>
+                    <div style="font-weight: bold;">{{node.groupKey}}</div>
+                    <div [id]="treeId+'_'+rootId+'_'+i" [ngClass]="(node.isClosed==true?'collapse':'collapse in')+' data-tree-branch'">
+                        <data-tree *ngIf="node.subGroups != null" [treeData]="node.subGroups" [rootId]="treeId+'_'+rootId"
+                            [rootNode]="rootNode||data">
+                            <div *data-tree-template="let section = data;">
+                                <div *ngTemplateOutlet="treeTemplate?.TreeTemplate; context: {data: section}"></div>
+                            </div>
+                        </data-tree>
+                        <ng-container *ngFor="let row of node.data; let i = index">
+                            <data-tree-cell [data]="row" [treeTemplate]="treeTemplate?.TreeTemplate"></data-tree-cell>
+                        </ng-container>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

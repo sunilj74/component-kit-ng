@@ -1,0 +1,23 @@
+.data-tree-branch {
+    font-weight: normal;
+}
+
+.data-tree-plus {
+    content: "\0012";
+}
+
+.data-tree-minus {
+    content: "\0014";
+}
+
+.data-tree-collapse {
+  display: block;
+  max-height: 0px;
+  overflow: hidden;
+  transition: max-height .5s cubic-bezier(0, 1, 0, 1);
+}
+
+.data-tree-collapse .in {
+    max-height: 99em;
+    transition: max-height .5s ease-in-out;
+}

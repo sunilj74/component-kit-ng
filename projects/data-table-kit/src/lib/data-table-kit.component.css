@@ -1,0 +1,131 @@
+.data-table {
+    border: 0;
+    border-spacing: 0;
+}
+
+.data-table th {
+    padding-top: 10px;
+    padding-bottom: 10px; 
+}
+
+
+.data-table-hover > tbody > tr:hover {
+    background-color: #f5f5f5;
+}
+
+.data-table-btn-current {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+
+.data-table-btn-default {
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.data-table-collapse {
+    display: none;
+}
+
+.data-table-collapse.in {
+    display: block;
+}
+
+.data-table-header {
+    color: black;
+    font-size: smaller;
+    font-weight: bold;
+}
+
+.data-table-hand {
+    cursor: pointer;
+}
+
+.data-table-right {
+    text-align: right;
+}
+
+.data-table-value {
+    color: black;
+    font-size: 12.5px;
+    font-weight: 600;
+}
+
+.data-table-pageinfo {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+.data-table-pages {
+    display: inline-block;
+    height: 40px;
+    margin: 20px 0;
+}
+
+.data-table-pages ul {
+    display: inline-block;
+    margin-left: 0;
+    margin-bottom: 0;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.data-table-pages li {
+    display: inline;
+}
+
+.data-table-pages a {
+    float: left;
+    padding: 0 14px;
+    line-height: 34px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+    border-left-width: 0;
+}
+
+.data-table-pages a:hover {
+    background-color: #f5f5f5;
+}
+
+.data-table-pages .active a {
+    background-color: #f5f5f5;
+    color: #999999;
+    cursor: default;
+}
+
+.data-table-pages .disabled span,
+.data-table-pages .disabled a,
+.data-table-pages .disabled a:hover {
+    color: #999999;
+    background-color: transparent;
+    cursor: default;
+}
+
+
+.data-table-pages li:first-child a {
+    border-left-width: 1px;
+    border-radius: 3px 0 0 3px;
+}
+
+.data-table-pages li:last-child a {
+    border-radius: 0 3px 3px 0;
+}
+
+.data-table-fade-in {
+    -webkit-animation: fadein 1s linear forwards;
+    animation: fadein 1s linear forwards;
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes fadein {
+    from { opacity: 0;}
+    to {opacity: 1;}
+}

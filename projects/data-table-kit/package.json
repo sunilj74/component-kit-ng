@@ -1,6 +1,28 @@
 {
   "name": "data-table-kit",
-  "version": "0.0.1",
+  "version": "1.0.1",
+  "description": "A simple datatable/datagrid for Angular projects",
+  "author": "Sunil Joseph",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sunilj74/component-kit-ng.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sunilj74/component-kit-ng/issues"
+
+  },
+  "homepage": "https://github.com/sunilj74/component-kit-ng",
+  "keywords": [
+    "angular",
+    "javascript",
+    "typescript",
+    "datatable",
+    "datagrid",
+    "table",
+    "grid",
+    "matrix"
+  ],
+  "license": "MIT",
   "peerDependencies": {
     "@angular/common": "^8.0.1",
     "@angular/core": "^8.0.1"
