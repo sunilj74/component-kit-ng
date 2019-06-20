@@ -1,7 +1,4 @@
-<p>
-  datatable works!
-</p>
-<data-table [griddata]="mydata" [showPageNo]="false" allowResize="true" pagesize="20">
+<data-table [griddata]="mydata" data-table-class="mytable" allowResize="true" pagesize="20">
   <div *data-table-column='let row=data; align:"left"; header: "Name";'>
     {{row?.name}}
   </div>

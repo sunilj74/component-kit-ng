@@ -12,13 +12,13 @@ export class DataTableKitComponent implements AfterContentInit {
   @ViewChild("columnTemplate", {static: false}) _columnTemplate: TemplateRef<any>;
   @ContentChildren(DataTableColumnDirective) Columns: QueryList<DataTableColumnDirective>;
   @ContentChildren(DataTableChildDirective) Children: QueryList<DataTableChildDirective>;
+  @Input("data-table-class") datatableClass = "data-table";
   @Input() griddata: any[];
   @Input() datacount: number = 0;
   @Input("buffered-page-no") bufferedpageno: number;
   @Input("buffered-page-count") bufferedpagecount: number;
   @Input() allowResize: boolean = true;
   @Input() pagesize: number = 0;
-  @Input() showPageNo: boolean = true;
   @Input("collapse-children") collapseChildren: any = null;
   @Output() bufferedPageNoChanged = new EventEmitter<any>();
 
@@ -227,7 +227,7 @@ export class DataTableKitComponent implements AfterContentInit {
   gotoPage(pageNo) {
     if (pageNo !== '') {
       let page: number = parseInt(pageNo);
-      if (page > 0 && page < this.totalpages.length) {
+      if (page > 0 && page <= this.totalpages.length) {
         page--;
         this.setPage(page);
       }

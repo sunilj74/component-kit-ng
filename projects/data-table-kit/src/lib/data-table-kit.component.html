@@ -3,17 +3,9 @@
         <ng-container #rowColumns></ng-container>
     </tr>
 </ng-template>
-<ng-container *ngIf="showPageNo">
-    <div *ngIf="totalpages!=null&&totalpages.length>0" style="width: 100%; padding: 5px; background-color: whitesmoke; border-radius: 0px 0px 0px 0px ;">
-        <a *ngFor="let page of totalpages; let index = index;" (click)="setPage(index)" [ngClass]="(pageno==index?'data-table-btn-current':'data-table-btn-default')+' data-table-hand'"
-            style="padding-left: 5px; padding-right: 5px; margin-right: 0px; border-right: 1px solid gray;">
-            <span>{{page}}</span>
-        </a>
-    </div>
-</ng-container>
-<table [ngClass]="'data-table '+(Children!=null&&Children.length>0?'':'data-table-hover')" style="width: 100%;">
+<table [ngClass]="datatableClass" style="width: 100%;">
     <thead>
-        <tr *ngIf="groups!=null&&groups.length>0" class="data-table-header">
+        <tr *ngIf="groups!=null&&groups.length>0" class="header">
             <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.thGroup"></th>
             <ng-template ngFor let-colIndex="index" let-group [ngForOf]="groups">
                 <th *ngIf="colIndex>0" [className]="gridClass.thSep" [ngStyle]="gridStyle.thSepGroup"></th>
@@ -24,7 +16,7 @@
                 </th>
             </ng-template>
         </tr>
-        <tr class="qgrid-header" (mousemove)="allowResize?resizeColumn($event):null">
+        <tr class="header" (mousemove)="allowResize?resizeColumn($event):null">
             <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.th"></th>
             <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
                 <th *ngIf="colIndex>0" [className]="gridClass.thSep" [ngStyle]="gridStyle.thSep" (mousedown)="(allowResize)?resizeColumnStart($event):null"
@@ -40,9 +32,9 @@
     <tbody>
         <ng-container #gridBody></ng-container>
         <ng-container *ngFor="let row of pagedata; let rowidx=index;">
-            <tr class="qgrid-data">
+            <tr class="data">
                 <td *ngIf="haschildren&&collapseChildren!=null">
-                    <a data-toggle="collapse" [href]="'#'+gridid+'_'+rowidx+'_inner'" [ngClass]="'plusminus'+(collapseChildren=='true'||collapseChildren==true?' collapsed':'')"
+                    <a data-toggle="collapse" [href]="'#'+gridid+'_'+rowidx+'_inner'" [ngClass]="(collapseChildren=='true'||collapseChildren==true?' data-table-collapse':'')"
                         style="font-size: 10px;"></a>
                 </td>
                 <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
@@ -65,35 +57,15 @@
         </ng-container>
     </tbody>
 </table>
-<ng-container *ngIf="!showPageNo">
-    <div class="data-table-pageinfo" *ngIf="totalpages!=null&&totalpages.length>0">
-        <div>
-            <nav>
-                <ul class="data-table-pages">
-                    <li [ngClass]="(pageno==0?'disabled':'')+' page-item data-table-hand'"><a (click)="setFirstPage()">First</a></li>
-                    <li [ngClass]="(pageno==0?'disabled':'')+' page-item data-table-hand'"><a (click)="setPrevPage()"><span
-                                aria-hidden="true">&laquo;</span> Previous</a></li>
-                    <li [ngClass]="(pageno < totalpages.length - 1?'':'disabled')+' page-item data-table-hand'"><a (click)="setNextPage()">Next
-                            <span aria-hidden="true">&raquo;</span></a></li>
-                    <li [ngClass]="(pageno < totalpages.length - 1?'':'disabled')+' page-item data-table-hand'"><a (click)="setLastPage()">Last</a></li>
-                </ul>
-            </nav>
-        </div>
-        <div class="col-xs-3 data-table-right">
-            <nav>
-                <ul class="data-table-pages">
-                    <li class="page-item">
-                        <div class="input-group" [style.width]="'300px'">
-                            <span class="input-group-addon data-table-value">PAGE: {{(pageno+1)}} / {{totalpages.length}}</span>
-                            <input type="number" class="form-control data-table-right" placeholder="page no" min="1" [max]="totalpages.length"
-                                (keyup.enter)="gotoPage(pagegoto.value)" #pagegoto>
-                            <span class="input-group-btn">
-                                <button class="btn btn-primary" (click)="gotoPage(pagegoto.value)">GO</button>
-                            </span>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-</ng-container>
+<div *ngIf="totalpages!=null&&totalpages.length>0">
+    <nav>
+        <ul class="data-table-pages">
+            <li [ngClass]="(pageno==0?'disabled':'')+' data-table-hand'"><a (click)="setFirstPage()">First</a></li>
+            <li [ngClass]="(pageno==0?'disabled':'')+' data-table-hand'"><a (click)="setPrevPage()"><span aria-hidden="true">&laquo;</span> Previous</a></li>
+            <li><a><input type="number" class="data-table-input-pageno" min="1" [max]="totalpages.length" [value]="pageno+1"
+                (keyup.enter)="gotoPage(pagegoto.value)" #pagegoto> / {{totalpages.length}}</a></li>
+            <li [ngClass]="(pageno < totalpages.length - 1?'':'disabled')+' data-table-hand'"><a (click)="setNextPage()">Next <span aria-hidden="true">&raquo;</span></a></li>
+            <li [ngClass]="(pageno < totalpages.length - 1?'':'disabled')+' data-table-hand'"><a (click)="setLastPage()">Last</a></li>
+        </ul>
+    </nav>
+</div>
