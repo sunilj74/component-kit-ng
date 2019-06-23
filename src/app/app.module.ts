@@ -13,13 +13,15 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import { TreeComponent } from './tree/tree.component';
+import { OrderstableComponent } from './orderstable/orderstable.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     DatatableComponent,
-    TreeComponent
+    TreeComponent,
+    OrderstableComponent
   ],
   imports: [
     BrowserModule,

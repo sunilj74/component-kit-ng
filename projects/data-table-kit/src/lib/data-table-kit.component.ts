@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter, SimpleChanges, AfterContentInit, ContentChildren, QueryList, ViewContainerRef, ViewChild, TemplateRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges, AfterContentInit, ContentChildren, QueryList, ViewContainerRef, ViewChild, TemplateRef, Inject } from '@angular/core';
 import { DataTableColumnDirective } from './data-table-column.directive';
 import { DataTableChildDirective } from './data-table-child.directive';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: "data-table",
@@ -13,7 +14,7 @@ export class DataTableKitComponent implements AfterContentInit {
   @ContentChildren(DataTableColumnDirective) Columns: QueryList<DataTableColumnDirective>;
   @ContentChildren(DataTableChildDirective) Children: QueryList<DataTableChildDirective>;
   @Input("data-table-class") datatableClass = "data-table";
-  @Input() griddata: any[];
+  @Input() tabledata: any[];
   @Input() datacount: number = 0;
   @Input("buffered-page-no") bufferedpageno: number;
   @Input("buffered-page-count") bufferedpagecount: number;
@@ -21,6 +22,7 @@ export class DataTableKitComponent implements AfterContentInit {
   @Input() pagesize: number = 0;
   @Input("collapse-children") collapseChildren: any = null;
   @Output() bufferedPageNoChanged = new EventEmitter<any>();
+  @Output() sortOrderChanged = new EventEmitter<any>();
 
   pageno: number = 0;
   pagedata: any[];
@@ -30,6 +32,7 @@ export class DataTableKitComponent implements AfterContentInit {
   totalpages: number[];
   fadein: string;
   haschildren: boolean = false;
+  sortInfo: any[] = [];
   gridid: string = "g" + this.uuidv4();
 
   gridStyle: any = {
@@ -75,9 +78,13 @@ export class DataTableKitComponent implements AfterContentInit {
   gridClass: any = {
     thSep: "",
     tdSep: "",
-    th: "qgrid-col-header",
-    td: "qgrid-col-data"
+    th: "data-table-col-header",
+    td: "data-table-col-data"
   };
+
+
+  constructor(@Inject(DOCUMENT) private doc: Document) {
+  }
 
   ngAfterContentInit() {
     this.haschildren = this.Children != null && this.Children.length > 0;
@@ -95,13 +102,13 @@ export class DataTableKitComponent implements AfterContentInit {
       }
 
     }
-    if (changes["griddata"] || changes["pagesize"] || changes["datacount"]) {
+    if (changes["tabledata"] || changes["pagesize"] || changes["datacount"]) {
       let datalength = 0;
       if (this.datacount != 0) {
         datalength = this.datacount;
       }
-      else if (this.griddata != null) {
-        datalength = this.griddata.length;
+      else if (this.tabledata != null) {
+        datalength = this.tabledata.length;
       }
 
       this.fadein = null;
@@ -116,7 +123,7 @@ export class DataTableKitComponent implements AfterContentInit {
       this.updatePageData();
     }
 
-    if (changes["griddata"]) {
+    if (changes["tabledata"]) {
       if (this._viewContainerRef != null) {
         this._viewContainerRef.createEmbeddedView(this._columnTemplate);
       }
@@ -168,8 +175,8 @@ export class DataTableKitComponent implements AfterContentInit {
   }
 
   updatePageData() {
-    if (this.pagesize == 0 || this.griddata == null || this.griddata.length <= this.pagesize) {
-      this.pagedata = this.griddata;
+    if (this.pagesize == 0 || this.tabledata == null || this.tabledata.length <= this.pagesize) {
+      this.pagedata = this.tabledata;
       this.fadein = null;
     }
     else {
@@ -177,7 +184,7 @@ export class DataTableKitComponent implements AfterContentInit {
       let end = start + (this.pagesize * 1);
       if (this.bufferedpageno != null && this.bufferedpagecount != null) {
         let currentFrom = this.bufferedpageno * this.bufferedpagecount * this.pagesize;
-        let currentTo = currentFrom + this.griddata.length - 1;
+        let currentTo = currentFrom + this.tabledata.length - 1;
         if (start < currentFrom || start > currentTo) {
           let refreshPage = Math.floor(start / (this.bufferedpagecount * this.pagesize));
           this.bufferedPageNoChanged.emit({ newPageNo: refreshPage, currentPageNo: this.bufferedpageno });
@@ -189,7 +196,7 @@ export class DataTableKitComponent implements AfterContentInit {
         }
       }
 
-      this.pagedata = this.griddata.slice(start, end);
+      this.pagedata = this.tabledata.slice(start, end);
       if (this.pageno > 0) {
         this.fadein = "data-table-fade-in";
       }
@@ -306,11 +313,148 @@ export class DataTableKitComponent implements AfterContentInit {
     }
   }
 
+  toggleChildren(event, rowidx){
+    if(this.doc!=null){
+      let id = this.gridid + "_" + rowidx + "_inner";
+      let target = event.target;
+      let childTablesElement = this.doc.querySelector("#"+id);
+      if(childTablesElement!=null){
+        let datatoggle = target.getAttribute("data-toggle");
+        let collapse = ("-" == datatoggle);
+        this.dataTableCollapseChild(target, childTablesElement, collapse);
+      }
+    }
+  }
+
+  dataTableCollapseChild(toggler, child, collapse){
+    if (collapse) {
+      if(child!=null){
+        child.classList.add("data-table-collapse");
+      }
+      if(toggler!=null){
+        toggler.setAttribute("data-toggle", "+");
+        toggler.classList.remove("data-table-minus");
+        toggler.classList.add("data-table-plus");
+      }
+    }
+    else {
+      if (child != null) {
+        child.classList.remove("data-table-collapse");
+      }
+      if(toggler!=null){
+        toggler.classList.remove("data-table-plus");
+        toggler.classList.add("data-table-minus");
+        toggler.setAttribute("data-toggle", "-");
+      }
+    }
+  }
+
+  dataTableCollapseChildren(event, collapse){
+    if(this.doc!=null){
+      let toggler = this.doc.querySelectorAll(".data-table-toggler-"+this.gridid);
+      let children = this.doc.querySelectorAll(".data-table-children-" + this.gridid);
+      let count = Math.min(toggler.length, children.length);
+      for(let i=0;i<count;i++){
+        this.dataTableCollapseChild(toggler[i], children[i], collapse);
+      }
+    }
+  }
+
+
   uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
       var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
   }
+
+  clearSort(){
+    this.sortInfo = [];
+  }
+
+  sortColumn(event, colSort, aord){
+    if(colSort==null||colSort.length==0){
+      return;
+    }
+    let target = event.target;
+    if(!event.ctrlKey){
+      this.clearSort();
+    }
+    for(let i=0;i<colSort.length;i++){
+      let idx = -1;
+      let skip = false;
+      for(let j=0;j<this.sortInfo.length;j++){
+        let sort = this.sortInfo[j];
+        if(sort!=null&&sort.field==colSort[i]){
+          sort.sortButton.classList.remove("data-table-sorted");
+          idx = j;
+          if(sort.aord==aord){
+            skip=true;
+          }
+          break;
+        }
+      }
+      if(idx!=-1){
+        this.sortInfo.splice(idx, 1);
+      }
+      if(!skip){
+        this.sortInfo.push({
+          field: colSort[i],
+          sortButton: event.target,
+          aord: aord
+        });
+        event.target.classList.add("data-table-sorted");
+      }
+    }
+    if (this.sortOrderChanged.observers!=null || this.sortOrderChanged.observers.length==0){
+
+    }
+    else{
+      this.sortOrderChanged.emit()
+      
+    }
+    console.log("sort on ", colSort, aord, this.sortInfo, this.sortOrderChanged.observers);
+  }
+
+  quickSort(data: any[], orderBy: string): any[] {
+    if (data == null || orderBy == null || orderBy.length == 0) {
+      return data;
+    }
+    let sortFields = orderBy
+      .split(",")
+      .map(f => f.trim().split(":"))
+      .map(f => {
+        if (f == null || f.length == 0) {
+          return null;
+        }
+        let field = f[0];
+        let mode = f.length > 1 ? f[1] : "a";
+        if (mode != "a" && mode != "A" && mode != "d" && mode != "D") {
+          mode = "a";
+        }
+        return {
+          field: field,
+          mode: mode.toLowerCase()
+        };
+      })
+      .filter(f => f != null);
+    return data.sort((rowA, rowB) => {
+      if (rowB == null || rowA == null) {
+        return 1;
+      }
+      for (let sortField of sortFields) {
+        let factor = sortField.mode == "d" ? -1 : 1;
+        if (rowA[sortField.field] < rowB[sortField.field]) {
+          return -1 * factor;
+        }
+        if (rowA[sortField.field] > rowB[sortField.field]) {
+          return 1 * factor;
+        }
+      }
+      return 0;
+    });
+
+  }
+
 }
 

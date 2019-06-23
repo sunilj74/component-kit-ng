@@ -1,0 +1,56 @@
+<data-table [tabledata]="ordersData" data-table-class="mytable" allowResize="true" pagesize="8" [collapse-children]="false">
+  <div *data-table-column='let row=data; align:"left"; header: "Order #"'>
+    {{row?.orderid}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: ["Customer","and Address"]; '>
+    {{row?.customer?.name}}<br/>
+    {{row?.customer?.address}}
+    <data-table-float width="600">
+      <div>{{row?.position}}</div>
+    </data-table-float>
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Order Date";'>
+    {{row?.orderdate | date: 'dd-MMM-y'}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Status";'>
+    {{row?.status}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Destination"; sort:"destination"'>
+    {{row?.destination}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Amount"; groupHeader: "Invoiced Amount"; groupColumns: 3'>
+    {{row?.amount | currency}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Tax";'>
+    {{row?.tax | currency}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Total";'>
+    {{(row?.amount+row?.tax) | currency}}
+  </div>
+  <div>
+    <div *data-table-child="let row=data;">
+      <h5>Order Items</h5>
+      <data-table [tabledata]="row?.orderitems">
+        <div *data-table-column='let row=data; align:"right"; header: "Item #"'>
+          {{row?.itemno}}
+        </div>
+        <div *data-table-column='let row=data; align:"left"; header: "Code"'>
+          {{row?.itemcode}}
+        </div>
+        <div *data-table-column='let row=data; align:"left"; header: "Description"'>
+          {{row?.description}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; header: "Rate";'>
+          {{row?.rate | currency}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; header: "Quantity";'>
+          {{row?.quantity | number: '1.0-0'}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; header: "Amount";'>
+          {{row?.amount | currency}}
+        </div>
+
+      </data-table>
+    </div>
+  </div>
+</data-table>

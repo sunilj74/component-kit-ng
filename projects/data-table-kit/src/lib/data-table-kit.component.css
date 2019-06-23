@@ -42,6 +42,16 @@
     cursor: pointer;
 }
 
+.data-table-col-header {
+    display: "table-cell";
+    padding: "3px";
+}
+
+.data-table-col-data {
+    display: "table-cell";
+    padding: "3px";
+}
+
 .data-table-input-pageno {
     border: 0;
     text-align: right;
@@ -59,6 +69,59 @@
 .data-table-input-pageno::-webkit-outer-spin-button { 
   -webkit-appearance: none; 
   margin: 0; 
+}
+
+.data-table-minus {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAIAAADZrBkAAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAH0lEQVQokWP8//8/A+mAiQw9o9qoqI2+gHE0lQxJbQDl0gYZ+lGHlgAAAABJRU5ErkJggg==);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 2px;
+    width: 10px
+}
+
+.data-table-plus {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAIAAADZrBkAAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAKUlEQVQokWP8//8/AzbAyMjIwMCAS5YJqyhBMKqNWtroCxhHU8mQ1AYA6OYMGQghg24AAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin-right: 5px;
+    padding: 2px;
+    width: 10px
+}
+
+.data-table-up {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAOCAIAAACtuNvgAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAWUlEQVQokZ2SUQ7AIAhDV+L9r9z9LQTbxsmX0D40CEg+/2PJKoDvLPtWZvZUY9K0FyvLTionZLIOmWlzH0AySPqSDughZcaRM3cPm5PsvrBow4a7nRTLdRIvsT4qGLm5+W8AAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    font-size: 6px;
+    margin: 0px;
+    padding: 0px;
+    width: 10px
+}
+
+.data-table-down {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAOCAIAAACtuNvgAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAYklEQVQokZ2S2w7AMAhCwez/f5k9dFkWvDRr3xSPkhRKwv8XBwyACwDJVcyXv2M0rSNf5inzRCaNqTEjMzO5kjRIXFq9sjcS883OWuTWloF990Ca5CkpydwswmVD5SKeRfkGMzBE5GopGhMAAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    font-size: 6px;
+    margin: 0px;
+    padding: 0px;
+    width: 10px;
+}
+
+.data-table-sorted {
+    background-color: orangered;
 }
 
 .data-table-pages {

@@ -1,14 +1,18 @@
-<data-table [griddata]="mydata" data-table-class="mytable" allowResize="true" pagesize="20">
-  <div *data-table-column='let row=data; align:"left"; header: "Name";'>
-    {{row?.name}}
-  </div>
-  <div *data-table-column='let row=data; align:"left"; header: "Team";'>
-    {{row?.team}}
-  </div>
-  <div *data-table-column='let row=data; align:"left"; header: "Country";'>
-    {{row?.country}}
-  </div>
-  <div *data-table-column='let row=data; align:"left"; header: "Position";'>
-    {{row?.position}}
-  </div>
-</data-table>
+<div class="mt-lg"></div>
+<orders-table [orders-data]="ordersData | async">
+</orders-table>
+<div class="large mt-lg">
+  &lt;data-table&gt; is an Angular component for rendering an advanced table or a data-grid.
+  It has some features that users might find very useful.
+</div>
+<ul class="large">
+  <li>sort on one or more columns</li>
+  <li>sort ascending or descending</li>
+  <li>resize columns</li>
+  <li>group columns</li>
+  <li>pagination</li>
+  <li>users can jump to any page</li>
+  <li>support for child colllections</li>
+  <li>floating section at row-level</li>
+  <li>support for buffered data fetching</li>
+</ul>

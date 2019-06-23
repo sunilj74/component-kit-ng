@@ -6,7 +6,8 @@
 <table [ngClass]="datatableClass" style="width: 100%;">
     <thead>
         <tr *ngIf="groups!=null&&groups.length>0" class="header">
-            <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.thGroup"></th>
+            <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.thGroup">
+            </th>
             <ng-template ngFor let-colIndex="index" let-group [ngForOf]="groups">
                 <th *ngIf="colIndex>0" [className]="gridClass.thSep" [ngStyle]="gridStyle.thSepGroup"></th>
                 <th [className]="gridClass.th" [ngStyle]="group.colStyle" [attr.colspan]="group.colspan">
@@ -17,14 +18,25 @@
             </ng-template>
         </tr>
         <tr class="header" (mousemove)="allowResize?resizeColumn($event):null">
-            <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.th"></th>
+            <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.th">
+                <div class="data-table-plus" style="font-size: smaller;" (click)="dataTableCollapseChildren($event, false)">&nbsp;</div>
+                <div class="data-table-minus" style="font-size: smaller;" (click)="dataTableCollapseChildren($event, true)">&nbsp;</div>
+            </th>
             <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
                 <th *ngIf="colIndex>0" [className]="gridClass.thSep" [ngStyle]="gridStyle.thSep" (mousedown)="(allowResize)?resizeColumnStart($event):null"
                     (mouseup)="(allowResize)?resizeColumnEnd($event):null"></th>
                 <th [className]="gridClass.th" [ngStyle]="gridStyle.th">
-                    <ng-template ngFor let-line [ngForOf]="col.header">
-                        <div>{{line}}</div>
-                    </ng-template>
+                    <div style="display: inline-block;">
+                        <div style="float:left;">
+                            <ng-template ngFor let-line [ngForOf]="col.header">
+                                <div>{{line}}</div>
+                            </ng-template>
+                        </div>
+                        <div *ngIf="col.sort!=null && col.sort.length>0" style="margin-left:5px;float:right;">
+                            <div class="data-table-up" (click)="sortColumn($event, col.sort,'a')">&nbsp;</div>
+                            <div class="data-table-down" (click)="sortColumn($event, col.sort,'d')">&nbsp;</div>
+                        </div>
+                    </div>
                 </th>
             </ng-template>
         </tr>
@@ -34,8 +46,7 @@
         <ng-container *ngFor="let row of pagedata; let rowidx=index;">
             <tr class="data">
                 <td *ngIf="haschildren&&collapseChildren!=null">
-                    <a data-toggle="collapse" [href]="'#'+gridid+'_'+rowidx+'_inner'" [ngClass]="(collapseChildren=='true'||collapseChildren==true?' data-table-collapse':'')"
-                        style="font-size: 10px;"></a>
+                    <div data-toggle="-" (click)="toggleChildren($event, rowidx)" [ngClass]="'data-table-toggler-'+gridid+' data-table-minus'">&nbsp;</div>
                 </td>
                 <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
                     <td *ngIf="colIndex>0" [className]="gridClass.tdSep" [ngStyle]="gridStyle.tdSep"></td>
@@ -47,7 +58,7 @@
             <tr *ngIf="haschildren">
                 <td *ngIf="collapseChildren!=null" style="border: 0px;padding:0px;"></td>
                 <td [attr.colspan]="columnCount" style="border: 0px; padding: 0px;">
-                    <div [id]="gridid+'_'+rowidx+'_inner'" [ngClass]="collapseChildren=='true'||collapseChildren==true?'data-table-collapse':''">
+                    <div [id]="gridid+'_'+rowidx+'_inner'" [ngClass]="'data-table-children-'+gridid+(collapseChildren=='true'||collapseChildren==true?' data-table-collapse':' ')">
                         <div *ngFor="let child of Children">
                             <data-table-cell [data]="row" [child]="child"></data-table-cell>
                         </div>
