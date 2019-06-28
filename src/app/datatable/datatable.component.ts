@@ -9,12 +9,14 @@ import { Observable } from 'rxjs';
 })
 export class DatatableComponent implements OnInit {
   ordersData: Observable<any>;
+  countryData: Observable<any>;
 
   constructor(private dataService: DataForTableService) { 
   }
 
   ngOnInit() {
     this.ordersData = this.dataService.fetchOrders();
+    this.countryData = this.dataService.fetchCountries();
   }
 
 }

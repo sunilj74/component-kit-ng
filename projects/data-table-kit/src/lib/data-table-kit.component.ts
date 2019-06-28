@@ -13,7 +13,7 @@ export class DataTableKitComponent implements AfterContentInit {
   @ViewChild("columnTemplate", {static: false}) _columnTemplate: TemplateRef<any>;
   @ContentChildren(DataTableColumnDirective) Columns: QueryList<DataTableColumnDirective>;
   @ContentChildren(DataTableChildDirective) Children: QueryList<DataTableChildDirective>;
-  @Input("data-table-class") datatableClass = "data-table";
+  @Input("data-table-class") datatableClass = "";
   @Input() tabledata: any[];
   @Input() datacount: number = 0;
   @Input("buffered-page-no") bufferedpageno: number;
@@ -103,23 +103,7 @@ export class DataTableKitComponent implements AfterContentInit {
 
     }
     if (changes["tabledata"] || changes["pagesize"] || changes["datacount"]) {
-      let datalength = 0;
-      if (this.datacount != 0) {
-        datalength = this.datacount;
-      }
-      else if (this.tabledata != null) {
-        datalength = this.tabledata.length;
-      }
-
-      this.fadein = null;
-      this.totalpages = [];
-      if (this.pagesize != 0 && datalength > this.pagesize) {
-        let pagecount = Math.ceil(datalength / this.pagesize)
-        this.totalpages = [];
-        for (let i = 0; i < pagecount; i++) {
-          this.totalpages.push((i + 1));
-        }
-      }
+      this.analyzeTableData();
       this.updatePageData();
     }
 
@@ -171,6 +155,26 @@ export class DataTableKitComponent implements AfterContentInit {
     }
     else {
       this.groups = null;
+    }
+  }
+
+  analyzeTableData(){
+    let datalength = 0;
+    if (this.datacount != 0) {
+      datalength = this.datacount;
+    }
+    else if (this.tabledata != null) {
+      datalength = this.tabledata.length;
+    }
+
+    this.fadein = null;
+    this.totalpages = [];
+    if (this.pagesize != 0 && datalength > this.pagesize) {
+      let pagecount = Math.ceil(datalength / this.pagesize)
+      this.totalpages = [];
+      for (let i = 0; i < pagecount; i++) {
+        this.totalpages.push((i + 1));
+      }
     }
   }
 
@@ -357,6 +361,7 @@ export class DataTableKitComponent implements AfterContentInit {
       for(let i=0;i<count;i++){
         this.dataTableCollapseChild(toggler[i], children[i], collapse);
       }
+      this.collapseChildren = collapse;
     }
   }
 
@@ -369,6 +374,12 @@ export class DataTableKitComponent implements AfterContentInit {
   }
 
   clearSort(){
+    for(let i=0;i<this.sortInfo.length;i++){
+      let sort = this.sortInfo[i];
+      if (sort != null) {
+        sort.sortButton.classList.remove("sorted");
+      }
+    }
     this.sortInfo = [];
   }
 
@@ -386,7 +397,7 @@ export class DataTableKitComponent implements AfterContentInit {
       for(let j=0;j<this.sortInfo.length;j++){
         let sort = this.sortInfo[j];
         if(sort!=null&&sort.field==colSort[i]){
-          sort.sortButton.classList.remove("data-table-sorted");
+          sort.sortButton.classList.remove("sorted");
           idx = j;
           if(sort.aord==aord){
             skip=true;
@@ -403,17 +414,32 @@ export class DataTableKitComponent implements AfterContentInit {
           sortButton: event.target,
           aord: aord
         });
-        event.target.classList.add("data-table-sorted");
+        event.target.classList.add("sorted");
       }
     }
-    if (this.sortOrderChanged.observers!=null || this.sortOrderChanged.observers.length==0){
 
+    if (this.sortOrderChanged.observers==null || this.sortOrderChanged.observers.length==0){
+      let sortColumns = [];
+      this.sortInfo.forEach(sort=>{
+        if(sort!=null){
+          sortColumns.push(`${sort.field}:${sort.aord}`)
+        }
+      });
+      let sortText = sortColumns.join(",");
+      this.tabledata = this.quickSort(this.tabledata, sortText);
+      this.analyzeTableData();
+      this.updatePageData();
     }
     else{
-      this.sortOrderChanged.emit()
-      
+      console.log("sort observers");
+      let sortOrder = this.sortInfo.map(p=>{
+        return {
+          field: p.field,
+          mode: p.aord
+        };
+      });
+      this.sortOrderChanged.emit(sortOrder);
     }
-    console.log("sort on ", colSort, aord, this.sortInfo, this.sortOrderChanged.observers);
   }
 
   quickSort(data: any[], orderBy: string): any[] {
@@ -444,17 +470,53 @@ export class DataTableKitComponent implements AfterContentInit {
       }
       for (let sortField of sortFields) {
         let factor = sortField.mode == "d" ? -1 : 1;
-        if (rowA[sortField.field] < rowB[sortField.field]) {
+        let valueA = this.propertyValue(rowA, sortField.field);
+        let valueB = this.propertyValue(rowB, sortField.field);
+        if (valueA < valueB) {
           return -1 * factor;
         }
-        if (rowA[sortField.field] > rowB[sortField.field]) {
+        if (valueA > valueB) {
           return 1 * factor;
         }
       }
       return 0;
     });
-
   }
+
+  propertyValue(obj: any, propertyPath: string) {
+    while (Array.isArray(obj)) {
+      if (obj.length > 0) {
+        obj = obj[0];
+      }
+      else {
+        obj = null;
+      }
+    }
+    if (obj == null) {
+      return null;
+    }
+    propertyPath = propertyPath
+      .split(".")
+      .map(name => name.trim())
+      .filter(name => name.length > 0)
+      .join(".");
+    let propertyName = propertyPath;
+    let rightPath: string = null;
+    let dotIndex = propertyPath.indexOf(".");
+    if (dotIndex == 0) {
+      propertyName = propertyPath.substr(1);
+    }
+    else if (dotIndex > 0) {
+      propertyName = propertyPath.substr(0, dotIndex);
+      rightPath = propertyPath.substr(dotIndex + 1);
+    }
+    let value: any = obj[propertyName];
+    if (rightPath != null) {
+      return this.propertyValue(value, rightPath);
+    }
+    return value;
+  }
+
 
 }
 

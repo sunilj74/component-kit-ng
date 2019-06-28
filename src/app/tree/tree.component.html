@@ -1,4 +1,60 @@
-<p>
-  tree works!
-</p>
-<data-tree></data-tree>
+<div class="mt-lg"></div>
+<mat-accordion>
+  <mat-expansion-panel expanded="true">
+    <mat-expansion-panel-header>
+      <div class="middle width100">
+        <div class="middle-me left about">
+          DATA-TREE
+        </div>
+        <div class="middle-me right sub-title pr-sm">
+          An Angular component for rendering a hierarchical table
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <ul class="normal list">
+      <li>You can collapse or expand the tree nodes can be by 
+        clicking on the +/- icon. This is a toggle button.
+      </li>
+      <li>You can also collapse or expand all child nodes by
+        pressing the Alt or Ctrl key when you click on the 
+        toggle button.
+      </li>
+      <li>Data for the tree must be of <b>TreeNodeType</b>. The <i>groupKey</i>
+        property defines the text that is used by the tree node. The
+        <i>subGroups</i> property defines the child nodes. subGroups
+        must be an array of <b>TreeNodeType</b> or null;
+      </li>
+      <li>You can add icons to nodes by a specifying an iconClass.</li>
+      <li>You can combine a data-table together with a data-tree to 
+        show a tree table.
+      </li>
+    </ul>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <div class="middle width100">
+        <div class="middle-me left about">
+          BASIC TREE
+        </div>
+        <div class="middle-me right sub-title pr-sm">
+          Icons, TreeNodeType
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <basic-tree></basic-tree>
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <div class="middle width100">
+        <div class="middle-me left about">
+          TREE TABLE
+        </div>
+        <div class="middle-me right sub-title pr-sm">
+          Adding a table to tree.
+        </div>
+      </div>
+    </mat-expansion-panel-header>
+    <tree-table></tree-table>
+  </mat-expansion-panel>
+</mat-accordion>
+

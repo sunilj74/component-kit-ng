@@ -1,26 +1,29 @@
-import { Component, Directive, Input, SimpleChanges, ContentChild, ViewContainerRef, ViewChild, TemplateRef, inject, Inject } from '@angular/core';
+import { Component, Directive, Input, SimpleChanges, ContentChild, ViewContainerRef, ViewChild, TemplateRef, inject, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
-import { IGroupedData } from './igrouped-data';
+import { TreeNodeType } from './tree-node-type';
 import { DataTreeTemplateDirective } from './data-tree-template.directive';
 
 @Component({
   selector: "data-tree",
   templateUrl: "./data-tree-kit.component.html",
-  styleUrls: ["./data-tree-kit.component.css"]
+  styleUrls: ["./data-tree-kit.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataTreeKitComponent {
-  @Input() treeData: IGroupedData[];
+  @Input() treeData: TreeNodeType[];
   @Input() rootNode: null;
   @Input() rootId: string = "";
+  @Input() isCollapsed: boolean = false;
+  @Input("node-class") nodeClass: string = "data-tree-node";
+  @Input("leaf-class") leafClass: string = "data-tree-leaf";
   @ContentChild(DataTreeTemplateDirective, { static: false })
   treeTemplate: DataTreeTemplateDirective;
   @ViewChild(DataTreeKitComponent, { static: false })
   subTree: DataTreeKitComponent;
   treeId = new Date().getTime();
-  data: IGroupedData[];
+  data: TreeNodeType[];
 
-  constructor(@Inject(DOCUMENT) private doc: Document){
-  }
+  constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   get TreeTemplate(): DataTreeTemplateDirective {
     return this.treeTemplate;
@@ -39,27 +42,27 @@ export class DataTreeKitComponent {
     let isClosed = !(node.isClosed || false);
     if (event != null && (event.ctrlKey || event.altKey)) {
       let nodeToCollapse = node;
-      let branchId = "#" + this.treeId + "_" + this.rootId + "_" + i + " .data-tree-branch";
+      let branchId =
+        this.treeId + "_" + this.rootId + "_" + i + " .data-tree-branch";
       if (event.altKey) {
         nodeToCollapse = this.rootNode || { subGroups: this.data };
-        branchId = "#" + this.treeId + "_" + this.rootId + " .data-tree-branch";
+        branchId = this.treeId + "_" + this.rootId + " .data-tree-branch";
       }
 
       this.collapseNodeAndChildren(nodeToCollapse, isClosed);
-      let branchElement = this.doc.querySelector(branchId);
-      if(branchElement!=null){
-        if(isClosed){
+      console.log("branchid", branchId);
+      let branchElement = this.doc.getElementById(branchId);
+      if (branchElement != null) {
+        if (isClosed) {
           branchElement.classList.remove("in");
-        }
-        else{
+        } else {
           branchElement.classList.add("in");
         }
       }
-    } 
-    else {
+    } else {
       node.isClosed = isClosed;
-      let treeRootId = "#" + treeId + "_" + rootId + "_" + i;;
-      let rootElement = this.doc.querySelector(treeRootId);
+      let treeRootId = treeId + "_" + rootId + "_" + i;
+      let rootElement = this.doc.getElementById(treeRootId);
       if (rootElement != null) {
         rootElement.classList.toggle("in");
       }

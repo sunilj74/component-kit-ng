@@ -9,6 +9,10 @@ import { DataTreeTemplateDirective } from './data-tree-template.directive';
   imports: [
     BrowserModule
   ],
-  exports: [DataTreeKitComponent]
+  exports: [
+    DataTreeKitComponent,
+    DataTreeCellComponent,
+    DataTreeTemplateDirective
+  ]
 })
 export class DataTreeKitModule { }

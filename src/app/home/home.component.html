@@ -6,7 +6,7 @@
 <nav mat-tab-nav-bar class="pt-xl">
   <a mat-tab-link *ngFor="let link of navigablePaths" [routerLink]="[link.path]" routerLinkActive #rla="routerLinkActive"
     [active]="rla.isActive">
-    {{link.label}}
+    <span class="tab-label">{{link.label}}</span>
   </a>
 </nav>
 <div>

@@ -3,7 +3,7 @@
         <ng-container #rowColumns></ng-container>
     </tr>
 </ng-template>
-<table [ngClass]="datatableClass" style="width: 100%;">
+<table [ngClass]="'data-table '+datatableClass" style="width: 100%;">
     <thead>
         <tr *ngIf="groups!=null&&groups.length>0" class="header">
             <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.thGroup">
@@ -26,13 +26,13 @@
                 <th *ngIf="colIndex>0" [className]="gridClass.thSep" [ngStyle]="gridStyle.thSep" (mousedown)="(allowResize)?resizeColumnStart($event):null"
                     (mouseup)="(allowResize)?resizeColumnEnd($event):null"></th>
                 <th [className]="gridClass.th" [ngStyle]="gridStyle.th">
-                    <div style="display: inline-block;">
-                        <div style="float:left;">
+                    <div class="data-table-col-header-text">
+                        <div class="data-table-col-header-middle">
                             <ng-template ngFor let-line [ngForOf]="col.header">
                                 <div>{{line}}</div>
                             </ng-template>
                         </div>
-                        <div *ngIf="col.sort!=null && col.sort.length>0" style="margin-left:5px;float:right;">
+                        <div *ngIf="col.sort!=null && col.sort.length>0" class="data-table-col-header-middle" style="margin-left:5px;">
                             <div class="data-table-up" (click)="sortColumn($event, col.sort,'a')">&nbsp;</div>
                             <div class="data-table-down" (click)="sortColumn($event, col.sort,'d')">&nbsp;</div>
                         </div>
@@ -46,7 +46,7 @@
         <ng-container *ngFor="let row of pagedata; let rowidx=index;">
             <tr class="data">
                 <td *ngIf="haschildren&&collapseChildren!=null">
-                    <div data-toggle="-" (click)="toggleChildren($event, rowidx)" [ngClass]="'data-table-toggler-'+gridid+' data-table-minus'">&nbsp;</div>
+                    <div [attr.data-toggle]="collapseChildren?'+':'-'" (click)="toggleChildren($event, rowidx)" [ngClass]="'data-table-toggler-'+gridid+' data-table-'+(collapseChildren?'plus':'minus')">&nbsp;</div>
                 </td>
                 <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
                     <td *ngIf="colIndex>0" [className]="gridClass.tdSep" [ngStyle]="gridStyle.tdSep"></td>
@@ -69,7 +69,7 @@
     </tbody>
 </table>
 <div *ngIf="totalpages!=null&&totalpages.length>0">
-    <nav>
+    <div>
         <ul class="data-table-pages">
             <li [ngClass]="(pageno==0?'disabled':'')+' data-table-hand'"><a (click)="setFirstPage()">First</a></li>
             <li [ngClass]="(pageno==0?'disabled':'')+' data-table-hand'"><a (click)="setPrevPage()"><span aria-hidden="true">&laquo;</span> Previous</a></li>
@@ -78,5 +78,5 @@
             <li [ngClass]="(pageno < totalpages.length - 1?'':'disabled')+' data-table-hand'"><a (click)="setNextPage()">Next <span aria-hidden="true">&raquo;</span></a></li>
             <li [ngClass]="(pageno < totalpages.length - 1?'':'disabled')+' data-table-hand'"><a (click)="setLastPage()">Last</a></li>
         </ul>
-    </nav>
+    </div>
 </div>

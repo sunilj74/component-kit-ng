@@ -1,0 +1,20 @@
+<data-table [tabledata]="countryData" allowResize="true" pagesize="20" >
+  <div *data-table-column='let row=data; align:"left"; header: "Code"; sort:"code";'>
+    {{row?.code}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Name"; sort:"name";'>
+    {{row?.name}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Capital"; sort:"capital";'>
+    {{row?.capital}}
+  </div>
+  <div *data-table-column='let row=data; align:"center"; header: "Currency"; sort:"currency"; '>
+    {{row?.currency}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Continent"; sort:"continent";'>
+    {{row?.continent}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "ISO"; sort:"iso";'>
+    {{row?.iso}}
+  </div>
+</data-table>

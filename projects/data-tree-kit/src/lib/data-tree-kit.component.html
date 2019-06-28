@@ -1,20 +1,23 @@
 <div *ngFor="let node of data; let i=index;" [id]="treeId+'_'+rootId">
-    <table style="width: 100%;">
+    <table *ngIf="!isCollapsed" style="width: 100%;">
         <tbody>
             <tr>
-                <td style="width: 15px;vertical-align: top; color: gray; font-size: smaller;">
-                    <span [ngClass]="'data-tree-'+(node.isClosed==true?'plus':'minus')" (click)="toggleNode($event, node, rootId, treeId, i)"></span>
+                <td style="width: 24px;vertical-align: top; color: gray; ">
+                    <div *ngIf="node.subGroups!=null" [ngClass]="'data-tree-'+(node.isClosed==true?'plus':'minus')" (click)="toggleNode($event, node, rootId, treeId, i)">&nbsp;</div>
                 </td>
                 <td>
-                    <div style="font-weight: bold;">{{node.groupKey}}</div>
-                    <div [id]="treeId+'_'+rootId+'_'+i" [ngClass]="(node.isClosed==true?'collapse':'collapse in')+' data-tree-branch'">
+                    <div>
+                        <div *ngIf="node.iconClass!=''" [ngClass]="node.iconClass" style="display: inline-block">&nbsp;</div>
+                        <div [ngClass]="node.subGroups!=null?nodeClass:leafClass" style="display: inline-block">{{node.groupKey}}</div>
+                    </div>
+                    <div [id]="treeId+'_'+rootId+'_'+i" [ngClass]="(node.isClosed==true?'data-tree-collapse':'data-tree-collapse in')+' data-tree-branch'">
                         <data-tree *ngIf="node.subGroups != null" [treeData]="node.subGroups" [rootId]="treeId+'_'+rootId"
-                            [rootNode]="rootNode||data">
+                            [rootNode]="rootNode||data" [isCollapsed]="node.isClosed">
                             <div *data-tree-template="let section = data;">
                                 <div *ngTemplateOutlet="treeTemplate?.TreeTemplate; context: {data: section}"></div>
                             </div>
                         </data-tree>
-                        <ng-container *ngFor="let row of node.data; let i = index">
+                        <ng-container *ngFor="let row of node.data; let idx = index">
                             <data-tree-cell [data]="row" [treeTemplate]="treeTemplate?.TreeTemplate"></data-tree-cell>
                         </ng-container>
                     </div>

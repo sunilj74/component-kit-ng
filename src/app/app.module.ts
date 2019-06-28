@@ -14,6 +14,9 @@ import { HomeComponent } from './home/home.component';
 import { DatatableComponent } from './datatable/datatable.component';
 import { TreeComponent } from './tree/tree.component';
 import { OrderstableComponent } from './orderstable/orderstable.component';
+import { CountryTableComponent } from './country-table/country-table.component';
+import { TreeTableComponent } from './treetable/treetable.component';
+import { BasicTreeComponent } from './basictree/basictree.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,10 @@ import { OrderstableComponent } from './orderstable/orderstable.component';
     HomeComponent,
     DatatableComponent,
     TreeComponent,
-    OrderstableComponent
+    OrderstableComponent,
+    CountryTableComponent,
+    TreeTableComponent,
+    BasicTreeComponent
   ],
   imports: [
     BrowserModule,

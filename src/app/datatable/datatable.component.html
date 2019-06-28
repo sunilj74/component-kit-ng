@@ -1,18 +1,82 @@
 <div class="mt-lg"></div>
-<orders-table [orders-data]="ordersData | async">
-</orders-table>
-<div class="large mt-lg">
-  &lt;data-table&gt; is an Angular component for rendering an advanced table or a data-grid.
-  It has some features that users might find very useful.
-</div>
-<ul class="large">
-  <li>sort on one or more columns</li>
-  <li>sort ascending or descending</li>
-  <li>resize columns</li>
-  <li>group columns</li>
-  <li>pagination</li>
-  <li>users can jump to any page</li>
-  <li>support for child colllections</li>
-  <li>floating section at row-level</li>
-  <li>support for buffered data fetching</li>
-</ul>
+<mat-accordion>
+    <mat-expansion-panel expanded="true">
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    DATA-TABLE
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    An Angular component for rendering an advanced table
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <ul class="normal list">
+            <li>You can enable sort on columns. Users will
+                then be able to sort in an ascending or descending
+                order. Users are also able to perform multi-column
+                sorts. An additional sort column can be included
+                by ctrl-clicking on the sort button.
+            </li>
+            <li>You can also perform custom sorting by listening to
+                sortOrderChanged event. This will ignore the default
+                sorting implemented in the data-table
+            </li>
+            <li>You can enable resize on columns. Users will then be
+                able to resize columns by dragging the column grid
+                lines.
+            </li>
+            <li>You can specify a group header for related columns.</li>
+            <li>When you have a large number of rows in your table, you
+                can specify a page size. This will let you present data
+                more neatly. Users will then be able to go to the different
+                pages. First page, last page, previous and next page
+                shortcuts are available. Users can also specify a page no
+                to go to that page directly.
+            </li>
+            <li>Support for hierarchical data. If your table data have
+                nested table data you can use the children option to
+                define a child grid for the child colllections. All
+                data will then be displayed like a tree table. You can
+                enable a collapse option for the children tables. Users
+                will then be able to hide or show child data.
+            </li>
+            <li>Floating sections can also be added at row-level. This is
+                a alternate way to prevent horizontal scrollbars.
+            </li>
+            <li>If you are dealing with a large collection of data and
+                do not want to fetch the entire row set upfront, you can
+                fetch the data in buffers. You can then listen to page
+                navigation to fetch additional data.
+            </li>
+        </ul>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    BASIC TABLE
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Columns, Alignment and Sorting
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <country-table [country-data]="countryData | async">
+        </country-table>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    HIERARCHICAL TABLE
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Single and Multi Field Columns, Sorting, Heading Grouping.
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <orders-table [orders-data]="ordersData | async">
+        </orders-table>
+    </mat-expansion-panel>
+</mat-accordion>

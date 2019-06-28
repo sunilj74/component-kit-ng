@@ -1,30 +1,30 @@
-<data-table [tabledata]="ordersData" data-table-class="mytable" allowResize="true" pagesize="8" [collapse-children]="false">
-  <div *data-table-column='let row=data; align:"left"; header: "Order #"'>
+<data-table [tabledata]="ordersData" allowResize="true" pagesize="8" [collapse-children]="true" (sortOrderChanged)="handleSort($event)">
+  <div *data-table-column='let row=data; align:"left"; header: "Order #"; sort:"orderid";'>
     {{row?.orderid}}
   </div>
-  <div *data-table-column='let row=data; align:"left"; header: ["Customer","and Address"]; '>
+  <div *data-table-column='let row=data; align:"left"; header: ["Customer","and Address"]; sort:["customer.name","customer.address"];'>
     {{row?.customer?.name}}<br/>
     {{row?.customer?.address}}
     <data-table-float width="600">
       <div>{{row?.position}}</div>
     </data-table-float>
   </div>
-  <div *data-table-column='let row=data; align:"left"; header: "Order Date";'>
+  <div *data-table-column='let row=data; align:"left"; header: "Order Date"; sort:"orderdate";'>
     {{row?.orderdate | date: 'dd-MMM-y'}}
   </div>
-  <div *data-table-column='let row=data; align:"left"; header: "Status";'>
+  <div *data-table-column='let row=data; align:"left"; header: "Status"; sort:"status";'>
     {{row?.status}}
   </div>
-  <div *data-table-column='let row=data; align:"left"; header: "Destination"; sort:"destination"'>
+  <div *data-table-column='let row=data; align:"left"; header: "Destination"; sort:"destination";'>
     {{row?.destination}}
   </div>
-  <div *data-table-column='let row=data; align:"right"; header: "Amount"; groupHeader: "Invoiced Amount"; groupColumns: 3'>
+  <div *data-table-column='let row=data; align:"right"; header: "Amount"; groupHeader: "Invoiced Amount"; groupColumns: 3; sort:"amount";'>
     {{row?.amount | currency}}
   </div>
-  <div *data-table-column='let row=data; align:"right"; header: "Tax";'>
+  <div *data-table-column='let row=data; align:"right"; header: "Tax"; sort:"tax";'>
     {{row?.tax | currency}}
   </div>
-  <div *data-table-column='let row=data; align:"right"; header: "Total";'>
+  <div *data-table-column='let row=data; align:"right"; header: "Total"; '>
     {{(row?.amount+row?.tax) | currency}}
   </div>
   <div>
@@ -49,7 +49,6 @@
         <div *data-table-column='let row=data; align:"right"; header: "Amount";'>
           {{row?.amount | currency}}
         </div>
-
       </data-table>
     </div>
   </div>

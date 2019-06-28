@@ -1,0 +1,14 @@
+.tree-leaf-icon {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAIAAADZrBkAAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAARElEQVQokWP8//8/A+mABZnDyMiIRymyBQhtjIyM+G1GVsBEhgsZ0BwJNxWP83BqIyaQRh056kjCACXVE59xCGQWXAAAoUgtIVx5GpEAAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 0px;
+    width: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}

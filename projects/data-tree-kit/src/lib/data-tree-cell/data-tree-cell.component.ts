@@ -9,7 +9,7 @@ import { TreeDataContext } from '../TreeDataContext';
 export class DataTreeCellComponent {
   @Input() data: any;
   @Input() treeTemplate: TemplateRef<any>;
-  @ViewChild("treeCell", { read: ViewContainerRef, static: false })
+  @ViewChild("treeCell", { read: ViewContainerRef, static: true })
   _cellContainerRef: ViewContainerRef;
 
   ngOnChanges(changes: SimpleChanges): void {

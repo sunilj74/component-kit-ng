@@ -11,5 +11,96 @@ h1, h2, h3, h4, h5 {
 }
 
 .container {
-    padding: 0px 120px;
+    padding: 0px 220px;
+}
+
+.about {
+    font-family: "Playfair Display";
+    font-weight: bold;
+    font-size: large;
+    letter-spacing: 2px;
+}
+
+.sub-title {
+    font-family: "Poiret One";
+    font-size: large;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.list {
+    letter-spacing: 3px;
+    padding-bottom: 20px;
+}
+
+.list li {
+    margin-top: 20px;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    float: none;
+}
+
+.middle::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    margin-right: -0.25em;
+    vertical-align: middle;
+}
+
+.middle-me {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.width100 {
+    width: 100%;
+}
+
+
+.tree-leaf-icon {
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    margin-right: 5px;
+    padding: 0px;
+    width: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.tree-leaf-icon-doc {
+    background-image: url(assets/doc.png);
+}
+
+.tree-leaf-icon-js {
+    background-image: url(assets/js.png);
+}
+
+.tree-leaf-icon-ts {
+    background-image: url(assets/ts.png);
+}
+
+.tree-leaf-icon-json {
+    background-image: url(assets/json.png);
+}
+
+.tree-leaf-icon-html {
+    background-image: url(assets/html.png);
+}
+
+.tree-leaf-icon-css {
+    background-image: url(assets/css.png);
 }

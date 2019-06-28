@@ -1,0 +1,7 @@
+.tab-label {
+    font-family: "Playfair Display";
+    opacity: 1 !important;
+    font-weight: bold;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+}
