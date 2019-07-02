@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatBottomSheet, MatBottomSheetConfig } from '@angular/material';
+import { BottomEditorComponent } from '../bottom-editor/bottom-editor.component';
 
 @Component({
   selector: "app-home",
@@ -17,7 +19,13 @@ export class HomeComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  constructor(private bottomSheet: MatBottomSheet) {}
 
   ngOnInit() {}
+
+  openCodeEditor(event){
+    let config: MatBottomSheetConfig<any> = new MatBottomSheetConfig();
+    config.panelClass = "bottom-sheet";
+    this.bottomSheet.open(BottomEditorComponent, config);
+  }
 }

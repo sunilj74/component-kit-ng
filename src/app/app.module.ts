@@ -20,6 +20,7 @@ import { CountryTableComponent } from './country-table/country-table.component';
 import { TreeTableComponent } from './treetable/treetable.component';
 import { BasicTreeComponent } from './basictree/basictree.component';
 import { LargeTableComponent } from './large-table/large-table.component';
+import { BottomEditorComponent } from './bottom-editor/bottom-editor.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LargeTableComponent } from './large-table/large-table.component';
     CountryTableComponent,
     TreeTableComponent,
     BasicTreeComponent,
-    LargeTableComponent
+    LargeTableComponent,
+    BottomEditorComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,9 @@ import { LargeTableComponent } from './large-table/large-table.component';
     HttpClientModule,
     DataTableKitModule,
     DataTreeKitModule
+  ],
+  entryComponents: [
+    BottomEditorComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
