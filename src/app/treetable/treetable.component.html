@@ -1,3 +1,42 @@
-<p>
-  treetable works!
-</p>
+<ng-container *ngIf="treeTableData | async; let data; else loading">
+  <data-tree [treeData]="data?.subGroups">
+    <ng-container *data-tree-template="let tableData = data;">
+      <data-table [tabledata]="tableData">
+        <div *data-table-column='let row=data; align:"right"; width: "60px"; header: "Position"'>
+          {{row?.position}}
+        </div>
+        <div *data-table-column='let row=data; align:"left"; header: "Country"'>
+            <img style="vertical-align: middle;" [src]="'https://www.countryflags.io/'+row.code+'/flat/32.png'">
+            {{row?.country}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Played"'>
+          {{row?.played}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Wins"'>
+          {{row?.wins}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Draws"'>
+          {{row?.draws}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Losses"'>
+          {{row?.losses}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "For"; groupHeader: "Goals"; groupColumns: 3;'>
+          {{row?.goalsfor}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Against"'>
+          {{row?.goalsagainst}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Difference"'>
+          {{row?.goaldifference}}
+        </div>
+        <div *data-table-column='let row=data; align:"right"; width: "70px"; header: "Points"'>
+          {{row?.points}}
+        </div>
+      </data-table>
+    </ng-container>
+  </data-tree>
+</ng-container>
+<ng-template #loading>
+  Loading...
+</ng-template>

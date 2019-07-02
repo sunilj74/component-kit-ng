@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, SimpleChanges, AfterContentInit, ContentChildren, QueryList, ViewContainerRef, ViewChild, TemplateRef, Inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges, AfterContentInit, ContentChildren, QueryList, ViewContainerRef, ViewChild, TemplateRef, Inject, ChangeDetectionStrategy } from '@angular/core';
 import { DataTableColumnDirective } from './data-table-column.directive';
 import { DataTableChildDirective } from './data-table-child.directive';
 import { DOCUMENT } from '@angular/common';
@@ -6,14 +6,16 @@ import { DOCUMENT } from '@angular/common';
 @Component({
   selector: "data-table",
   templateUrl: "./data-table-kit.component.html",
-  styleUrls: ['./data-table-kit.component.css']
+  styleUrls: ["./data-table-kit.component.css"],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DataTableKitComponent implements AfterContentInit {
-  @ViewChild("gridBody", { read: ViewContainerRef, static: false }) _viewContainerRef: ViewContainerRef;
-  @ViewChild("columnTemplate", {static: false}) _columnTemplate: TemplateRef<any>;
+  @ViewChild("gridBody", { read: ViewContainerRef, static: false })
+  _viewContainerRef: ViewContainerRef;
+  @ViewChild("columnTemplate", { static: false }) _columnTemplate: TemplateRef<any>;
   @ContentChildren(DataTableColumnDirective) Columns: QueryList<DataTableColumnDirective>;
   @ContentChildren(DataTableChildDirective) Children: QueryList<DataTableChildDirective>;
-  @Input("data-table-class") datatableClass = "";
+  @Input("data-table-class") datatableClass: string;
   @Input() tabledata: any[];
   @Input() datacount: number = 0;
   @Input("buffered-page-no") bufferedpageno: number;
@@ -37,27 +39,27 @@ export class DataTableKitComponent implements AfterContentInit {
 
   gridStyle: any = {
     thSep: {
-      "padding": "0px",
+      padding: "0px",
       "border-top": "1px solid lightgray",
       "border-bottom": "1px solid lightgray",
       "border-right": "1px solid lightgray",
-      "width": "4px"
+      width: "4px"
     },
     thSepGroup: {
-      "padding": "0px",
+      padding: "0px",
       "border-top": "1px solid lightgray",
       "border-bottom": "0px solid lightgray",
       "border-right": "1px solid lightgray",
-      "width": "4px"
+      width: "4px"
     },
     tdSep: {
-      "width": "1px",
-      "padding": "0px"
+      width: "1px",
+      padding: "0px"
     },
     th: {
       "vertical-align": "bottom",
       "border-top": "1px solid lightgray",
-      "border-bottom": "1px solid lightgray",
+      "border-bottom": "1px solid lightgray"
     },
     thGroup: {
       "text-align": "center",
@@ -71,8 +73,7 @@ export class DataTableKitComponent implements AfterContentInit {
       "border-top": "1px solid lightgray",
       "border-bottom": "1px solid lightgray"
     },
-    td: {
-    }
+    td: {}
   };
 
   gridClass: any = {
@@ -82,13 +83,11 @@ export class DataTableKitComponent implements AfterContentInit {
     td: "data-table-col-data"
   };
 
-
-  constructor(@Inject(DOCUMENT) private doc: Document) {
-  }
+  constructor(@Inject(DOCUMENT) private doc: Document) {}
 
   ngAfterContentInit() {
     this.haschildren = this.Children != null && this.Children.length > 0;
-    this.columnCount = (this.Columns == null ? 0 : (this.Columns.length * 2) - 1);
+    this.columnCount = this.Columns == null ? 0 : this.Columns.length * 2 - 1;
     this.setupGroupHeaders();
   }
 
@@ -96,11 +95,9 @@ export class DataTableKitComponent implements AfterContentInit {
     if (changes["allowResize"]) {
       if (this.allowResize) {
         this.gridStyle.thSep["cursor"] = "col-resize";
-      }
-      else {
+      } else {
         delete this.gridStyle.thSep["cursor"];
       }
-
     }
     if (changes["tabledata"] || changes["pagesize"] || changes["datacount"]) {
       this.analyzeTableData();
@@ -137,7 +134,7 @@ export class DataTableKitComponent implements AfterContentInit {
           }
           if (columns[i].groupColumns != null && columns[i].groupColumns > 1) {
             found = true;
-            group["colspan"] = (columns[i].groupColumns * 2) - 1;
+            group["colspan"] = columns[i].groupColumns * 2 - 1;
             i = i + columns[i].groupColumns - 1;
           }
           if (found) {
@@ -152,49 +149,55 @@ export class DataTableKitComponent implements AfterContentInit {
       this.groups = groupHeaders;
       this.gridStyle.th["border-top"] = "0px solid lightgray";
       this.gridStyle.thSep["border-top"] = "0px solid lightgray";
-    }
-    else {
+    } else {
       this.groups = null;
     }
   }
 
-  analyzeTableData(){
+  analyzeTableData() {
     let datalength = 0;
     if (this.datacount != 0) {
       datalength = this.datacount;
-    }
-    else if (this.tabledata != null) {
+    } else if (this.tabledata != null) {
       datalength = this.tabledata.length;
     }
 
     this.fadein = null;
     this.totalpages = [];
     if (this.pagesize != 0 && datalength > this.pagesize) {
-      let pagecount = Math.ceil(datalength / this.pagesize)
+      let pagecount = Math.ceil(datalength / this.pagesize);
       this.totalpages = [];
       for (let i = 0; i < pagecount; i++) {
-        this.totalpages.push((i + 1));
+        this.totalpages.push(i + 1);
       }
     }
   }
 
   updatePageData() {
-    if (this.pagesize == 0 || this.tabledata == null || this.tabledata.length <= this.pagesize) {
+    if (
+      this.pagesize == 0 ||
+      this.tabledata == null ||
+      this.tabledata.length <= this.pagesize
+    ) {
       this.pagedata = this.tabledata;
       this.fadein = null;
-    }
-    else {
+    } else {
       let start = this.pageno * this.pagesize;
-      let end = start + (this.pagesize * 1);
+      let end = start + this.pagesize * 1;
       if (this.bufferedpageno != null && this.bufferedpagecount != null) {
-        let currentFrom = this.bufferedpageno * this.bufferedpagecount * this.pagesize;
+        let currentFrom =
+          this.bufferedpageno * this.bufferedpagecount * this.pagesize;
         let currentTo = currentFrom + this.tabledata.length - 1;
         if (start < currentFrom || start > currentTo) {
-          let refreshPage = Math.floor(start / (this.bufferedpagecount * this.pagesize));
-          this.bufferedPageNoChanged.emit({ newPageNo: refreshPage, currentPageNo: this.bufferedpageno });
+          let refreshPage = Math.floor(
+            start / (this.bufferedpagecount * this.pagesize)
+          );
+          this.bufferedPageNoChanged.emit({
+            newPageNo: refreshPage,
+            currentPageNo: this.bufferedpageno
+          });
           return;
-        }
-        else {
+        } else {
           start -= currentFrom;
           end -= currentFrom;
         }
@@ -236,7 +239,7 @@ export class DataTableKitComponent implements AfterContentInit {
   }
 
   gotoPage(pageNo) {
-    if (pageNo !== '') {
+    if (pageNo !== "") {
       let page: number = parseInt(pageNo);
       if (page > 0 && page <= this.totalpages.length) {
         page--;
@@ -259,8 +262,7 @@ export class DataTableKitComponent implements AfterContentInit {
     if (this.resizeInfo != null && e != null) {
       if (e.buttons == 0) {
         this.resizeInfo = null;
-      }
-      else {
+      } else {
         let diff = this.resizeInfo.startX - e.pageX;
         let width = this.resizeInfo.element.clientWidth;
         let newWidth = width - (diff + 2);
@@ -268,13 +270,14 @@ export class DataTableKitComponent implements AfterContentInit {
           if (this.resizeInfo.fixColumns > 0) {
             for (let i = 0; i < this.resizeInfo.fixColumns; i++) {
               if (i % 2 == 0 && this.resizeInfo.children.length > i) {
-                this.resizeInfo.children[i].style.width = this.resizeInfo.children[i].clientWidth+"px";
+                this.resizeInfo.children[i].style.width =
+                  this.resizeInfo.children[i].clientWidth + "px";
               }
             }
             this.resizeInfo.fixColumns = 0;
           }
           this.resizeInfo.startX = e.pageX;
-          this.resizeInfo.element.style.width = newWidth+"px";
+          this.resizeInfo.element.style.width = newWidth + "px";
         }
       }
     }
@@ -296,11 +299,11 @@ export class DataTableKitComponent implements AfterContentInit {
       let parent = target.parentElement;
       if (parent != null) {
         let children = parent.children;
-        if(children!=null && children.length>0){
+        if (children != null && children.length > 0) {
           let columnIndex = -1;
-          for(let i=0;i<children.length;i++){
-            if(children[i]==target){
-              columnIndex=i;
+          for (let i = 0; i < children.length; i++) {
+            if (children[i] == target) {
+              columnIndex = i;
               break;
             }
           }
@@ -317,35 +320,34 @@ export class DataTableKitComponent implements AfterContentInit {
     }
   }
 
-  toggleChildren(event, rowidx){
-    if(this.doc!=null){
+  toggleChildren(event, rowidx) {
+    if (this.doc != null) {
       let id = this.gridid + "_" + rowidx + "_inner";
       let target = event.target;
-      let childTablesElement = this.doc.querySelector("#"+id);
-      if(childTablesElement!=null){
+      let childTablesElement = this.doc.querySelector("#" + id);
+      if (childTablesElement != null) {
         let datatoggle = target.getAttribute("data-toggle");
-        let collapse = ("-" == datatoggle);
+        let collapse = "-" == datatoggle;
         this.dataTableCollapseChild(target, childTablesElement, collapse);
       }
     }
   }
 
-  dataTableCollapseChild(toggler, child, collapse){
+  dataTableCollapseChild(toggler, child, collapse) {
     if (collapse) {
-      if(child!=null){
+      if (child != null) {
         child.classList.add("data-table-collapse");
       }
-      if(toggler!=null){
+      if (toggler != null) {
         toggler.setAttribute("data-toggle", "+");
         toggler.classList.remove("data-table-minus");
         toggler.classList.add("data-table-plus");
       }
-    }
-    else {
+    } else {
       if (child != null) {
         child.classList.remove("data-table-collapse");
       }
-      if(toggler!=null){
+      if (toggler != null) {
         toggler.classList.remove("data-table-plus");
         toggler.classList.add("data-table-minus");
         toggler.setAttribute("data-toggle", "-");
@@ -353,28 +355,32 @@ export class DataTableKitComponent implements AfterContentInit {
     }
   }
 
-  dataTableCollapseChildren(event, collapse){
-    if(this.doc!=null){
-      let toggler = this.doc.querySelectorAll(".data-table-toggler-"+this.gridid);
-      let children = this.doc.querySelectorAll(".data-table-children-" + this.gridid);
+  dataTableCollapseChildren(event, collapse) {
+    if (this.doc != null) {
+      let toggler = this.doc.querySelectorAll(
+        ".data-table-toggler-" + this.gridid
+      );
+      let children = this.doc.querySelectorAll(
+        ".data-table-children-" + this.gridid
+      );
       let count = Math.min(toggler.length, children.length);
-      for(let i=0;i<count;i++){
+      for (let i = 0; i < count; i++) {
         this.dataTableCollapseChild(toggler[i], children[i], collapse);
       }
       this.collapseChildren = collapse;
     }
   }
 
-
   uuidv4() {
-    return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+      var r = (Math.random() * 16) | 0,
+        v = c == "x" ? r : (r & 0x3) | 0x8;
       return v.toString(16);
     });
   }
 
-  clearSort(){
-    for(let i=0;i<this.sortInfo.length;i++){
+  clearSort() {
+    for (let i = 0; i < this.sortInfo.length; i++) {
       let sort = this.sortInfo[i];
       if (sort != null) {
         sort.sortButton.classList.remove("sorted");
@@ -383,32 +389,32 @@ export class DataTableKitComponent implements AfterContentInit {
     this.sortInfo = [];
   }
 
-  sortColumn(event, colSort, aord){
-    if(colSort==null||colSort.length==0){
+  sortColumn(event, colSort, aord) {
+    if (colSort == null || colSort.length == 0) {
       return;
     }
     let target = event.target;
-    if(!event.ctrlKey){
+    if (!event.ctrlKey) {
       this.clearSort();
     }
-    for(let i=0;i<colSort.length;i++){
+    for (let i = 0; i < colSort.length; i++) {
       let idx = -1;
       let skip = false;
-      for(let j=0;j<this.sortInfo.length;j++){
+      for (let j = 0; j < this.sortInfo.length; j++) {
         let sort = this.sortInfo[j];
-        if(sort!=null&&sort.field==colSort[i]){
+        if (sort != null && sort.field == colSort[i]) {
           sort.sortButton.classList.remove("sorted");
           idx = j;
-          if(sort.aord==aord){
-            skip=true;
+          if (sort.aord == aord) {
+            skip = true;
           }
           break;
         }
       }
-      if(idx!=-1){
+      if (idx != -1) {
         this.sortInfo.splice(idx, 1);
       }
-      if(!skip){
+      if (!skip) {
         this.sortInfo.push({
           field: colSort[i],
           sortButton: event.target,
@@ -418,21 +424,23 @@ export class DataTableKitComponent implements AfterContentInit {
       }
     }
 
-    if (this.sortOrderChanged.observers==null || this.sortOrderChanged.observers.length==0){
+    if (
+      this.sortOrderChanged.observers == null ||
+      this.sortOrderChanged.observers.length == 0
+    ) {
       let sortColumns = [];
-      this.sortInfo.forEach(sort=>{
-        if(sort!=null){
-          sortColumns.push(`${sort.field}:${sort.aord}`)
+      this.sortInfo.forEach(sort => {
+        if (sort != null) {
+          sortColumns.push(`${sort.field}:${sort.aord}`);
         }
       });
       let sortText = sortColumns.join(",");
       this.tabledata = this.quickSort(this.tabledata, sortText);
       this.analyzeTableData();
       this.updatePageData();
-    }
-    else{
+    } else {
       console.log("sort observers");
-      let sortOrder = this.sortInfo.map(p=>{
+      let sortOrder = this.sortInfo.map(p => {
         return {
           field: p.field,
           mode: p.aord
@@ -487,8 +495,7 @@ export class DataTableKitComponent implements AfterContentInit {
     while (Array.isArray(obj)) {
       if (obj.length > 0) {
         obj = obj[0];
-      }
-      else {
+      } else {
         obj = null;
       }
     }
@@ -505,8 +512,7 @@ export class DataTableKitComponent implements AfterContentInit {
     let dotIndex = propertyPath.indexOf(".");
     if (dotIndex == 0) {
       propertyName = propertyPath.substr(1);
-    }
-    else if (dotIndex > 0) {
+    } else if (dotIndex > 0) {
       propertyName = propertyPath.substr(0, dotIndex);
       rightPath = propertyPath.substr(dotIndex + 1);
     }
@@ -516,7 +522,5 @@ export class DataTableKitComponent implements AfterContentInit {
     }
     return value;
   }
-
-
 }
 

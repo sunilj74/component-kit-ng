@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { TreeNodeType, toTreeData } from "data-tree-kit";
-import { FILES } from './mockdata';
+import { FILES, FIFA18 } from './mockdata';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,13 @@ export class DataForTreeService {
 
   constructor() { }
 
-  fetchFolders(): Observable<any> {
+  fetchFolders(): Observable<TreeNodeType> {
     let data = this.getTreeData();
     console.log("tree data is", data);
     return of(data);
   }
-
-  
-getTreeData() : TreeNodeType {
+ 
+  getTreeData() : TreeNodeType {
     let treeNodeRoot = toTreeData(FILES, (node,file,idx,arr)=>{
         node.groupKey = file.Name;
         node.extras = file;
@@ -60,8 +59,33 @@ getTreeData() : TreeNodeType {
         return paths;
     })
     return treeNodeRoot;
+  }
 
-}
+  fetchFifaData(): Observable<TreeNodeType> {
+      let data = this.getFifaData();
+      console.log("fifa data is", data);
+      return of(data);
+  }
 
+  getFifaData() : TreeNodeType {
+    let root:TreeNodeType = {
+        groupKey: "FIFA World Cup 2018",
+        subGroups: []
+    };
+    let groups = FIFA18
+                    .map(p=>p.group)
+                    .filter((p,i,a)=>a.indexOf(p)===i);
+    groups.forEach(p=>{
+        let node:TreeNodeType = {
+            groupKey: `Group ${p}`,
+            isClosed: "A"!=p,
+            data: [FIFA18.filter(q=>{ 
+                return q.group==p;
+            })]
+        }
+        root.subGroups.push(node);
+    });
+    return root;
+  }
 
 }

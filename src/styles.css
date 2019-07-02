@@ -104,3 +104,8 @@ h1, h2, h3, h4, h5 {
 .tree-leaf-icon-css {
     background-image: url(assets/css.png);
 }
+
+.my-table {
+    font-family: 'PT Sans';
+    font-size: large;
+}

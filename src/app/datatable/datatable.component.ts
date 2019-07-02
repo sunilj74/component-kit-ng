@@ -3,20 +3,27 @@ import { DataForTableService } from '../datafortable.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-datatable',
-  templateUrl: './datatable.component.html',
-  styleUrls: ['./datatable.component.css']
+  selector: "app-datatable",
+  templateUrl: "./datatable.component.html",
+  styleUrls: ["./datatable.component.css"]
 })
 export class DatatableComponent implements OnInit {
-  ordersData: Observable<any>;
-  countryData: Observable<any>;
+  ordersData$: Observable<any>;
+  countryData$: Observable<any>;
+  largeData$: Observable<any>;
 
-  constructor(private dataService: DataForTableService) { 
-  }
+  constructor(private dataService: DataForTableService) {}
 
   ngOnInit() {
-    this.ordersData = this.dataService.fetchOrders();
-    this.countryData = this.dataService.fetchCountries();
+    this.ordersData$ = this.dataService.fetchOrders();
+    this.countryData$ = this.dataService.fetchCountries();
+    this.largeData$ = this.dataService.fetchAngularRepositories(0);
+  }
+
+  handleBufferedPageChanged(pageInfo) {
+    this.largeData$ = this.dataService.fetchAngularRepositories(
+      pageInfo.newPageNo
+    );
   }
 
 }

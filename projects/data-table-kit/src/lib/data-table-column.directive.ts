@@ -6,6 +6,7 @@ import { CellDataContext } from './cell-data-context';
 })
 export class DataTableColumnDirective {
   @Input("data-table-columnAlign") align: string = "left";
+  @Input("data-table-columnVerticalAlign") verticalAlign: string = "top";
   @Input("data-table-columnHeader") set header(value: string[]) {
     if (Array.isArray(value)) {
       this._header = value;
@@ -18,15 +19,14 @@ export class DataTableColumnDirective {
   }
   private _header: string[];
 
-  @Input("data-table-columnSort") set sort(values: string[]){
-    if(Array.isArray(values)){
+  @Input("data-table-columnSort") set sort(values: string[]) {
+    if (Array.isArray(values)) {
       this._sortfields = values;
-    }
-    else{
+    } else {
       this._sortfields = [values];
     }
   }
-  get sort(): string[]{
+  get sort(): string[] {
     return this._sortfields;
   }
   private _sortfields: string[];
@@ -34,11 +34,17 @@ export class DataTableColumnDirective {
   @Input("data-table-columnGroupColumns") groupColumns: number = 0;
   @Input("data-table-columnGroupHeader") groupHeader: any;
   @Input("data-table-columnSortFieldName") sortFieldName: string;
+  @Input("data-table-columnWidth") columnWidth: string;
 
-  get sgcStyle() {
-    return {
-      "text-align": this.align
+  get dtcStyle() {
+    let columnStyle = {
+      "text-align": this.align,
+      "vertical-align": this.verticalAlign
     };
+    if (this.columnWidth != null && this.columnWidth.length > 0) {
+      columnStyle["width"] = this.columnWidth;
+    }
+    return columnStyle;
   }
 
   constructor(

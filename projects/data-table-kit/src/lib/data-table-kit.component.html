@@ -50,7 +50,7 @@
                 </td>
                 <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
                     <td *ngIf="colIndex>0" [className]="gridClass.tdSep" [ngStyle]="gridStyle.tdSep"></td>
-                    <td [className]="gridClass.td" [ngStyle]="col.sgcStyle">
+                    <td [className]="gridClass.td" [ngStyle]="col.dtcStyle">
                         <data-table-cell [data]="row" [column]="col" [fadein]="fadein"></data-table-cell>
                     </td>
                 </ng-template>

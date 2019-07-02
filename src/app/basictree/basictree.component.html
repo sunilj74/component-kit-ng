@@ -1,9 +1,5 @@
 <ng-container *ngIf="foldersData | async; let folders; else loading">
   <data-tree [treeData]="folders?.subGroups">
-    <div *data-tree-template="let fileprops = data;">
-      got it
-      {{fileprops}}
-    </div>
   </data-tree>
 </ng-container>
 <ng-template #loading>

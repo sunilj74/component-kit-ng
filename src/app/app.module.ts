@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { HttpClientModule } from '@angular/common/http';
+
 import { NgModule } from '@angular/core';
 
 import { DataTableKitModule } from 'data-table-kit';
@@ -17,6 +19,7 @@ import { OrderstableComponent } from './orderstable/orderstable.component';
 import { CountryTableComponent } from './country-table/country-table.component';
 import { TreeTableComponent } from './treetable/treetable.component';
 import { BasicTreeComponent } from './basictree/basictree.component';
+import { LargeTableComponent } from './large-table/large-table.component';
 
 @NgModule({
   declarations: [
@@ -27,13 +30,15 @@ import { BasicTreeComponent } from './basictree/basictree.component';
     OrderstableComponent,
     CountryTableComponent,
     TreeTableComponent,
-    BasicTreeComponent
+    BasicTreeComponent,
+    LargeTableComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     SharedModule,
+    HttpClientModule,
     DataTableKitModule,
     DataTreeKitModule
   ],

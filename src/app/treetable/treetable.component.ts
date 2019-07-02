@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { DataForTreeService } from '../datafortree.service';
 
 @Component({
   selector: 'tree-table',
@@ -6,10 +8,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./treetable.component.css']
 })
 export class TreeTableComponent implements OnInit {
-
-  constructor() { }
-
+  treeTableData: Observable<any>;
+  constructor(private dataService: DataForTreeService) { }
   ngOnInit() {
+    this.treeTableData = this.dataService.fetchFifaData();
   }
-
 }

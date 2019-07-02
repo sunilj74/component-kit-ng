@@ -3,12 +3,12 @@
         <tbody>
             <tr>
                 <td style="width: 24px;vertical-align: top; color: gray; ">
-                    <div *ngIf="node.subGroups!=null" [ngClass]="'data-tree-'+(node.isClosed==true?'plus':'minus')" (click)="toggleNode($event, node, rootId, treeId, i)">&nbsp;</div>
+                    <div *ngIf="node.subGroups!=null||node.data!=null" [ngClass]="'data-tree-'+(node.isClosed==true?'plus':'minus')" (click)="toggleNode($event, node, rootId, treeId, i)">&nbsp;</div>
                 </td>
                 <td>
                     <div>
                         <div *ngIf="node.iconClass!=''" [ngClass]="node.iconClass" style="display: inline-block">&nbsp;</div>
-                        <div [ngClass]="node.subGroups!=null?nodeClass:leafClass" style="display: inline-block">{{node.groupKey}}</div>
+                        <div [ngClass]="(node.subGroups!=null||node.data!=null)?nodeClass:leafClass" style="display: inline-block">{{node.groupKey}}</div>
                     </div>
                     <div [id]="treeId+'_'+rootId+'_'+i" [ngClass]="(node.isClosed==true?'data-tree-collapse':'data-tree-collapse in')+' data-tree-branch'">
                         <data-tree *ngIf="node.subGroups != null" [treeData]="node.subGroups" [rootId]="treeId+'_'+rootId"

@@ -62,7 +62,7 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
-        <country-table [country-data]="countryData | async">
+        <country-table [country-data]="countryData$ | async">
         </country-table>
     </mat-expansion-panel>
     <mat-expansion-panel>
@@ -76,7 +76,21 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
-        <orders-table [orders-data]="ordersData | async">
+        <orders-table [orders-data]="ordersData$ | async">
         </orders-table>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    LARGE DATA TABLE
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Integraing buffered data fetch from Rest API.
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <large-table [large-data]="largeData$ | async" (bufferedPageChanged)="handleBufferedPageChanged($event)">
+        </large-table>
     </mat-expansion-panel>
 </mat-accordion>

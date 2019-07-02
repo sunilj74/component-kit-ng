@@ -1,0 +1,22 @@
+<data-table 
+  [data-table-class]="'my-table'"
+  [tabledata]="largeData?.data" 
+  [buffered-page-no]="largeData?.pageNo"
+  [buffered-page-count]="largeData?.pageCount"
+  [datacount]="largeData?.count"
+  pagesize="10"
+  (bufferedPageNoChanged)="handleBufferedPageChanged($event)"
+  >
+  <div *data-table-column="let row=data; width: '200px'; header: 'Name'">
+    <a [href]="'https://github.com/'+row.full_name" target="_blank">{{row.name}}</a>
+  </div>
+  <div *data-table-column="let row=data; header: 'Description'">
+    {{row.description}}
+  </div>
+  <div *data-table-column="let row=data; width: '100px'; header: 'Created On'">
+    {{row.created_at | date: 'dd-MMM-yyyy'}}
+  </div>
+  <div *data-table-column="let row=data; align: 'center'; width: '80px'; header: 'Private'">
+    {{row.private}}
+  </div>
+</data-table>

@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { MOCKORDER, MOCKORDERITEM, COUNTRIES } from './mockdata';
 import { Observable, of } from 'rxjs';
+import { map, delay, startWith } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataForTableService {
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   fetchOrders() : Observable<any>{
     let data = this.growMockOrders(1000);
@@ -16,6 +18,36 @@ export class DataForTableService {
   fetchCountries() : Observable<any>{
     let data = COUNTRIES;
     return of(data);
+  }
+
+  fetchAngularRepositories(pageNo: number = 0) : Observable<any>{
+    let url = `https://api.github.com/search/repositories?q=angular&sort=stars&order=desc&page=${pageNo+1}`;
+    let data = this.http
+                .get(url, {observe: 'response'})
+                .pipe(
+                  startWith(null),
+                  delay(0),
+                  map(res => {
+                    if(res == null) return res;
+                    let jsonData = res.body;
+                    let items = jsonData["items"];
+                    let count = jsonData["total_count"];
+                    if(count>1000){
+                      count = 1000;
+                    }
+                    let pageCount = Math.ceil(count / 30);
+                    let myData = {
+                      pageNo: pageNo,
+                      pageCount: 3,
+                      count: count,
+                      data: items
+                    };
+                    console.log("myData", myData);
+                    return myData;
+                  })
+                );
+
+    return data;
   }
 
   growMockOrders(count): any[] {
@@ -48,5 +80,9 @@ export class DataForTableService {
     }
     return data;
   }
+
+
+
+
 
 }
