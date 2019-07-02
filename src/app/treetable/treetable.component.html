@@ -1,7 +1,7 @@
 <ng-container *ngIf="treeTableData | async; let data; else loading">
   <data-tree [treeData]="data?.subGroups">
     <ng-container *data-tree-template="let tableData = data;">
-      <data-table [tabledata]="tableData">
+      <data-table [tabledata]="tableData" [data-table-class]="'my-table'">
         <div *data-table-column='let row=data; align:"right"; width: "60px"; header: "Position"'>
           {{row?.position}}
         </div>

@@ -5,6 +5,7 @@ export interface TreeNodeType {
   isClosed?: boolean;
   extras?: any;
   iconClass?: string;
+  textClass?: string;
 }
 
 export function findNode(rootNode: TreeNodeType, paths: string[], create: boolean = false): TreeNodeType {

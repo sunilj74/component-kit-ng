@@ -8,11 +8,11 @@
                 <td>
                     <div>
                         <div *ngIf="node.iconClass!=''" [ngClass]="node.iconClass" style="display: inline-block">&nbsp;</div>
-                        <div [ngClass]="(node.subGroups!=null||node.data!=null)?nodeClass:leafClass" style="display: inline-block">{{node.groupKey}}</div>
+                        <div [ngClass]="(node.textClass!=null&&node.textClass.length>0?node.textClass:(node.subGroups!=null||node.data!=null)?nodeClass:leafClass)" style="display: inline-block">{{node.groupKey}}</div>
                     </div>
                     <div [id]="treeId+'_'+rootId+'_'+i" [ngClass]="(node.isClosed==true?'data-tree-collapse':'data-tree-collapse in')+' data-tree-branch'">
                         <data-tree *ngIf="node.subGroups != null" [treeData]="node.subGroups" [rootId]="treeId+'_'+rootId"
-                            [rootNode]="rootNode||data" [isCollapsed]="node.isClosed">
+                            [rootNode]="rootNode||data" [isCollapsed]="node.isClosed" [node-class]="nodeClass" [leaf-class]="leafClass">
                             <div *data-tree-template="let section = data;">
                                 <div *ngTemplateOutlet="treeTemplate?.TreeTemplate; context: {data: section}"></div>
                             </div>

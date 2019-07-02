@@ -1,5 +1,5 @@
 <ng-container *ngIf="foldersData | async; let folders; else loading">
-  <data-tree [treeData]="folders?.subGroups">
+  <data-tree [treeData]="folders?.subGroups" node-class="my-tree-node" leaf-class="my-tree-leaf">
   </data-tree>
 </ng-container>
 <ng-template #loading>

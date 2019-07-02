@@ -1,4 +1,4 @@
-<data-table [tabledata]="countryData" allowResize="true" pagesize="20" >
+<data-table [tabledata]="countryData" allowResize="true" pagesize="20" [data-table-class]="'my-table'" >
   <div *data-table-column='let row=data; align:"left"; header: "Code"; sort:"code";'>
     {{row?.code}}
   </div>

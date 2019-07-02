@@ -42,10 +42,6 @@ export class DataForTreeService {
             }
             node.iconClass = "tree-leaf-icon "+node.iconClass;
         }
-        node.data = [
-            "abc",
-            "xyz"
-        ];
         let paths = [];
         let dirName = file.DirectoryName;
         if(dirName==null||dirName.length==0){
@@ -63,7 +59,6 @@ export class DataForTreeService {
 
   fetchFifaData(): Observable<TreeNodeType> {
       let data = this.getFifaData();
-      console.log("fifa data is", data);
       return of(data);
   }
 
@@ -77,7 +72,8 @@ export class DataForTreeService {
                     .filter((p,i,a)=>a.indexOf(p)===i);
     groups.forEach(p=>{
         let node:TreeNodeType = {
-            groupKey: `Group ${p}`,
+            groupKey: `GROUP ${p}`,
+            textClass: "my-tree-group my-tree-group-"+p.toLowerCase(),
             isClosed: "A"!=p,
             data: [FIFA18.filter(q=>{ 
                 return q.group==p;
