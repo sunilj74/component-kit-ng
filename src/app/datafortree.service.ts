@@ -12,7 +12,6 @@ export class DataForTreeService {
 
   fetchFolders(): Observable<TreeNodeType> {
     let data = this.getTreeData();
-    console.log("tree data is", data);
     return of(data);
   }
  

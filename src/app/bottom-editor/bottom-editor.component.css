@@ -1,13 +1,24 @@
-.code-editor {
-    height: 680px;
-}
-
 .code-editor-container {
     height: 100%; 
-    background-color: #333333;
+    background-color: #1e1e1e;
+}
+
+.code-editor-toolbar {
+    background-color:darkorange;
 }
 
 .button-bar {
     width: 100;
     text-align: right;
+}
+
+
+.codename {
+    font-family: "Playfair Display";
+    font-size: large;
+    letter-spacing: 2px;
+}
+
+.mat-button-toggle-checked {
+    background-color: goldenrod;
 }

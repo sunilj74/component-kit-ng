@@ -50,7 +50,6 @@ export class DataTreeKitComponent {
       }
 
       this.collapseNodeAndChildren(nodeToCollapse, isClosed);
-      console.log("branchid", branchId);
       let branchElement = this.doc.getElementById(branchId);
       if (branchElement != null) {
         if (isClosed) {

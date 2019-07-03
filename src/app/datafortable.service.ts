@@ -42,7 +42,6 @@ export class DataForTableService {
                       count: count,
                       data: items
                     };
-                    console.log("myData", myData);
                     return myData;
                   })
                 );

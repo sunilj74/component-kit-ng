@@ -1,59 +1,47 @@
 export const CODEPATHS: any[] = [
     {
         name: "BASICTABLE",
-        label: "BASIC TABLE",
+        title: "BASIC TABLE",
         paths: [
             "/app/country-table/country-table.component.css",
             "/app/country-table/country-table.component.html",
-            "/app/country-table/country-table.component.ts",
+            "/app/country-table/country-table.component.ts"
         ]
     },
     {
         name: "HIERARCHICALTABLE",
-        label: "HIERARCHICAL TABLE",
+        title: "HIERARCHICAL TABLE",
         paths: [
             "/app/orderstable/orderstable.component.css",
             "/app/orderstable/orderstable.component.html",
-            "/app/orderstable/orderstable.component.ts",
+            "/app/orderstable/orderstable.component.ts"
         ]
     },
     {
         name: "LARGEDATATABLE",
-        label: "LARGE DATA TABLE",
-        paths: []
+        title: "LARGE DATA TABLE",
+        paths: [
+            "/app/large-table/large-table.component.css",
+            "/app/large-table/large-table.component.html",
+            "/app/large-table/large-table.component.ts"
+        ]
     },
     {
         name: "BASICTREE",
-        label: "BASIC TREE",
-        paths: []
+        title: "BASIC TREE",
+        paths: [
+            "/app/basictree/basictree.component.css",
+            "/app/basictree/basictree.component.html",
+            "/app/basictree/basictree.component.ts"
+        ]
     },
     {
         name: "TREETABLE",
-        label: "TREE TABLE",
-        paths: []
-    },
-    {
-        name: "",
-        paths: []
-    },
-    {
-        name: "",
-        paths: []
-    },
-    {
-        name: "",
-        paths: []
-    },
-    {
-        name: "",
-        paths: []
-    },
-    {
-        name: "",
-        paths: []
-    },
-    {
-        name: "",
-        paths: []
+        title: "TREE TABLE",
+        paths: [
+            "/app/treetable/treetable.component.css",
+            "/app/treetable/treetable.component.html",
+            "/app/treetable/treetable.component.ts"
+        ]
     }
 ];

@@ -1,11 +1,17 @@
 <div class="code-editor-container">
-  <ngx-monaco-editor class="code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+  <monaco-editor #editor [codes]="code$ | async" [file]="file">
+  </monaco-editor>
   <div class="width100">
-    <div class="left pl-sm pr-sm pt-sm about text-white">
-      {{title}}
+    <div class="left pl-sm pr-sm text-white">
+      <span class="codename pr-lg pt-sm">{{title}}</span>
+      <mat-button-toggle-group name="fileTypes" [(ngModel)]="file">
+        <ng-container *ngFor="let f of files">
+          <mat-button-toggle [value]="f">{{f.language}}</mat-button-toggle>
+        </ng-container>
+      </mat-button-toggle-group>
     </div>
     <div class="right pr-sm pl-sm">
-      <button mat-mini-fab color="warn">Copy</button>
+      <button mat-mini-fab color="warn" (click)="editor.handleCopy()">Copy</button>
     </div>
   </div>
 </div>

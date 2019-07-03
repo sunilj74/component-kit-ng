@@ -439,7 +439,6 @@ export class DataTableKitComponent implements AfterContentInit {
       this.analyzeTableData();
       this.updatePageData();
     } else {
-      console.log("sort observers");
       let sortOrder = this.sortInfo.map(p => {
         return {
           field: p.field,

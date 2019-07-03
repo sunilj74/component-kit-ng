@@ -23,6 +23,7 @@ import { TreeTableComponent } from './treetable/treetable.component';
 import { BasicTreeComponent } from './basictree/basictree.component';
 import { LargeTableComponent } from './large-table/large-table.component';
 import { BottomEditorComponent } from './bottom-editor/bottom-editor.component';
+import { MonacoEditorComponent } from './monaco-editor/monaco-editor.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { BottomEditorComponent } from './bottom-editor/bottom-editor.component';
     TreeTableComponent,
     BasicTreeComponent,
     LargeTableComponent,
-    BottomEditorComponent
+    BottomEditorComponent,
+    MonacoEditorComponent
   ],
   imports: [
     BrowserModule,
