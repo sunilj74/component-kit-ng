@@ -41,6 +41,10 @@
         </div>
       </div>
     </mat-expansion-panel-header>
+    <button mat-raised-button color="warn" (click)="handleViewCode($event,'BASICTREE')">
+      <mat-icon inline="true">code</mat-icon> View Code
+    </button>
+    <div class="pb-small">&nbsp;</div>
     <basic-tree></basic-tree>
   </mat-expansion-panel>
   <mat-expansion-panel>
@@ -54,6 +58,10 @@
         </div>
       </div>
     </mat-expansion-panel-header>
+    <button mat-raised-button color="warn" (click)="handleViewCode($event,'TREETABLE')">
+        <mat-icon inline="true">code</mat-icon> View Code
+    </button>
+    <div class="pb-small">&nbsp;</div>
     <tree-table></tree-table>
   </mat-expansion-panel>
 </mat-accordion>

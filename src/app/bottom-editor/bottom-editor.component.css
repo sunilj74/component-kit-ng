@@ -1,0 +1,13 @@
+.code-editor {
+    height: 680px;
+}
+
+.code-editor-container {
+    height: 100%; 
+    background-color: #333333;
+}
+
+.button-bar {
+    width: 100;
+    text-align: right;
+}

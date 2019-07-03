@@ -1,17 +1,11 @@
-<p>
-  bottom-editor works!
-  ok<br/>
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-  ok<br />
-</p>
+<div class="code-editor-container">
+  <ngx-monaco-editor class="code-editor" [options]="editorOptions" [(ngModel)]="code"></ngx-monaco-editor>
+  <div class="width100">
+    <div class="left pl-sm pr-sm pt-sm about text-white">
+      {{title}}
+    </div>
+    <div class="right pr-sm pl-sm">
+      <button mat-mini-fab color="warn">Copy</button>
+    </div>
+  </div>
+</div>

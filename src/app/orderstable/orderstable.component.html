@@ -1,4 +1,4 @@
-<data-table [tabledata]="ordersData" allowResize="true" pagesize="8" [collapse-children]="true" (sortOrderChanged)="handleSort($event)" [data-table-class]="'my-table'">
+<data-table [tabledata]="ordersData" allowResize="true" pagesize="8" [collapse-children]="true" [data-table-class]="'my-table'">
   <div *data-table-column='let row=data; align:"left"; header: "Order #"; sort:"orderid";'>
     {{row?.orderid}}
   </div>

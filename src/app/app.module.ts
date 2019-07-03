@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { NgModule } from '@angular/core';
+
+import { MonacoEditorModule } from 'ngx-monaco-editor';
 
 import { DataTableKitModule } from 'data-table-kit';
 import { DataTreeKitModule } from 'data-tree-kit';
@@ -39,6 +41,8 @@ import { BottomEditorComponent } from './bottom-editor/bottom-editor.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    FormsModule,
+    MonacoEditorModule.forRoot(),
     SharedModule,
     HttpClientModule,
     DataTableKitModule,

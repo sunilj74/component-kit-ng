@@ -62,6 +62,10 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'BASICTABLE')">
+            <mat-icon inline="true">code</mat-icon> View Code 
+        </button>
+        <div class="pb-small">&nbsp;</div>
         <country-table [country-data]="countryData$ | async">
         </country-table>
     </mat-expansion-panel>
@@ -76,6 +80,10 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'HIERARCHICALTABLE')">
+            <mat-icon inline="true">code</mat-icon> View Code
+        </button>
+        <div class="pb-small">&nbsp;</div>
         <orders-table [orders-data]="ordersData$ | async">
         </orders-table>
     </mat-expansion-panel>
@@ -90,6 +98,10 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'LARGEDATATABLE')">
+            <mat-icon inline="true">code</mat-icon> View Code
+        </button>
+        <div class="pb-small">&nbsp;</div>
         <large-table [large-data]="largeData$ | async" (bufferedPageChanged)="handleBufferedPageChanged($event)">
         </large-table>
     </mat-expansion-panel>

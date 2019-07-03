@@ -237,3 +237,15 @@
 .normal {
     font-weight: normal;
 }
+
+.text-darkred {
+    color: darkred;
+}
+
+.text-white {
+    color: white;
+}
+
+.text-black {
+    color: black;
+}

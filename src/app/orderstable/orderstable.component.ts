@@ -10,8 +10,4 @@ export class OrderstableComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {}
-
-  handleSort(sortInfo){
-    console.log("mysort info", sortInfo);
-  }
 }
