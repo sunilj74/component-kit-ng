@@ -1,24 +1,17 @@
-# DataTableKit
+# data-table-kit
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.1.
+Create data tables in your Angular apps.
 
-## Code scaffolding
+## Install
+This is a [Node.js](https://nodejs.org/en/) module available through the npm registry. Installation is done using the npm install command:
 
-Run `ng generate component component-name --project data-table-kit` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project data-table-kit`.
-> Note: Don't forget to add `--project data-table-kit` or else it will be added to the default project in your `angular.json` file. 
+```bash
+$ npm install data-table-kit
+```
 
-## Build
+## Features
+Sort Columns, Resize Columns, Paginate, Group Columns, Hieararchical Tables,
+Buffered Fetch
 
-Run `ng build data-table-kit` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Publishing
-
-After building your library with `ng build data-table-kit`, go to the dist folder `cd dist/data-table-kit` and run `npm publish`.
-
-## Running unit tests
-
-Run `ng test data-table-kit` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## License
+[MIT](https://opensource.org/licenses/MIT)

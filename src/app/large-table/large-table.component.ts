@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
   styleUrls: ["./large-table.component.css"]
 })
 export class LargeTableComponent implements OnInit {
-  @Input("large-data") largeData: any[];
+  @Input("large-data") largeData: any;
   @Output() bufferedPageChanged = new EventEmitter<any>();
 
   constructor() {}
