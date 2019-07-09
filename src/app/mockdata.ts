@@ -2029,456 +2029,980 @@ export const COUNTRIES = [
     }
 ];
 
-export const FIFA18 = [
-  {
-    group: "A",
-    position: 1,
-    code: "uy",
-    country: "Uruguay",
-    played: 3,
-    wins: 3,
-    draws: 0,
-    losses: 0,
-    goalsagainst: 5,
-    goalsfor: 0,
-    goaldifference: 5,
-    points: 9
-  },
-  {
-    group: "A",
-    position: 2,
-    code: "ru",
-    country: "Russia",
-    played: 3,
-    wins: 2,
-    draws: 0,
-    losses: 1,
-    goalsagainst: 8,
-    goalsfor: 4,
-    goaldifference: 4,
-    points: 6
-  },
-  {
-    group: "A",
-    position: 3,
-    code: "sa",
-    country: "Saudi Arabia",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 7,
-    goaldifference: -5,
-    points: 3
-  },
-  {
-    group: "A",
-    position: 4,
-    code: "eg",
-    country: "Egypt",
-    played: 3,
-    wins: 0,
-    draws: 0,
-    losses: 3,
-    goalsagainst: 2,
-    goalsfor: 6,
-    goaldifference: -4,
-    points: 0
-  },
-  {
-    group: "B",
-    position: 1,
-    code: "es",
-    country: "Spain",
-    played: 3,
-    wins: 1,
-    draws: 2,
-    losses: 0,
-    goalsagainst: 6,
-    goalsfor: 5,
-    goaldifference: 1,
-    points: 5
-  },
-  {
-    group: "B",
-    position: 2,
-    code: "pt",
-    country: "Portugal",
-    played: 3,
-    wins: 1,
-    draws: 2,
-    losses: 0,
-    goalsagainst: 5,
-    goalsfor: 4,
-    goaldifference: 1,
-    points: 5
-  },
-  {
-    group: "B",
-    position: 3,
-    code: "ir",
-    country: "Iran",
-    played: 3,
-    wins: 1,
-    draws: 1,
-    losses: 1,
-    goalsagainst: 2,
-    goalsfor: 2,
-    goaldifference: 0,
-    points: 4
-  },
-  {
-    group: "B",
-    position: 4,
-    code: "ma",
-    country: "Morocco",
-    played: 3,
-    wins: 0,
-    draws: 1,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 4,
-    goaldifference: -2,
-    points: 1
-  },
-  {
-    group: "C",
-    position: 1,
-    code: "fr",
-    country: "France",
-    played: 3,
-    wins: 2,
-    draws: 1,
-    losses: 0,
-    goalsagainst: 3,
-    goalsfor: 1,
-    goaldifference: 2,
-    points: 7
-  },
-  {
-    group: "C",
-    position: 2,
-    code: "dk",
-    country: "Denmark",
-    played: 3,
-    wins: 1,
-    draws: 2,
-    losses: 0,
-    goalsagainst: 2,
-    goalsfor: 1,
-    goaldifference: 1,
-    points: 5
-  },
-  {
-    group: "C",
-    position: 3,
-    code: "pe",
-    country: "Peru",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 2,
-    goaldifference: 0,
-    points: 3
-  },
-  {
-    group: "C",
-    position: 4,
-    code: "au",
-    country: "Australia",
-    played: 3,
-    wins: 0,
-    draws: 1,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 5,
-    goaldifference: -3,
-    points: 1
-  },
-  {
-    group: "D",
-    position: 1,
-    code: "hr",
-    country: "Croatia",
-    played: 3,
-    wins: 3,
-    draws: 0,
-    losses: 0,
-    goalsagainst: 7,
-    goalsfor: 1,
-    goaldifference: 6,
-    points: 9
-  },
-  {
-    group: "D",
-    position: 2,
-    code: "ar",
-    country: "Argentina",
-    played: 3,
-    wins: 1,
-    draws: 1,
-    losses: 1,
-    goalsagainst: 3,
-    goalsfor: 5,
-    goaldifference: -2,
-    points: 4
-  },
-  {
-    group: "D",
-    position: 3,
-    code: "ng",
-    country: "Nigeria",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 3,
-    goalsfor: 4,
-    goaldifference: -1,
-    points: 3
-  },
-  {
-    group: "D",
-    position: 4,
-    code: "is",
-    country: "Iceland",
-    played: 3,
-    wins: 0,
-    draws: 1,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 5,
-    goaldifference: -3,
-    points: 1
-  },
-  {
-    group: "E",
-    position: 1,
-    code: "br",
-    country: "Brazil",
-    played: 3,
-    wins: 2,
-    draws: 1,
-    losses: 0,
-    goalsagainst: 5,
-    goalsfor: 1,
-    goaldifference: 4,
-    points: 7
-  },
-  {
-    group: "E",
-    position: 2,
-    code: "ch",
-    country: "Switzerland",
-    played: 3,
-    wins: 1,
-    draws: 2,
-    losses: 0,
-    goalsagainst: 5,
-    goalsfor: 4,
-    goaldifference: 1,
-    points: 5
-  },
-  {
-    group: "E",
-    position: 3,
-    code: "rs",
-    country: "Serbia",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 4,
-    goaldifference: -2,
-    points: 3
-  },
-  {
-    group: "E",
-    position: 4,
-    code: "cr",
-    country: "Costa Rica",
-    played: 3,
-    wins: 0,
-    draws: 1,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 5,
-    goaldifference: -3,
-    points: 1
-  },
-  {
-    group: "F",
-    position: 1,
-    code: "se",
-    country: "Sweden",
-    played: 3,
-    wins: 2,
-    draws: 0,
-    losses: 1,
-    goalsagainst: 5,
-    goalsfor: 2,
-    goaldifference: 3,
-    points: 6
-  },
-  {
-    group: "F",
-    position: 2,
-    code: "mx",
-    country: "Mexico",
-    played: 3,
-    wins: 2,
-    draws: 0,
-    losses: 1,
-    goalsagainst: 3,
-    goalsfor: 4,
-    goaldifference: -1,
-    points: 6
-  },
-  {
-    group: "F",
-    position: 3,
-    code: "kr",
-    country: "South Korea",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 3,
-    goalsfor: 3,
-    goaldifference: 0,
-    points: 3
-  },
-  {
-    group: "F",
-    position: 4,
-    code: "de",
-    country: "Germany",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 4,
-    goaldifference: -2,
-    points: 3
-  },
-  {
-    group: "G",
-    position: 1,
-    code: "be",
-    country: "Belgium",
-    played: 3,
-    wins: 3,
-    draws: 0,
-    losses: 0,
-    goalsagainst: 9,
-    goalsfor: 2,
-    goaldifference: 7,
-    points: 9
-  },
-  {
-    group: "G",
-    position: 2,
-    code: "gb",
-    country: "England",
-    played: 3,
-    wins: 2,
-    draws: 0,
-    losses: 1,
-    goalsagainst: 8,
-    goalsfor: 3,
-    goaldifference: 5,
-    points: 6
-  },
-  {
-    group: "G",
-    position: 3,
-    code: "tn",
-    country: "Tunisia",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 5,
-    goalsfor: 8,
-    goaldifference: -3,
-    points: 3
-  },
-  {
-    group: "G",
-    position: 4,
-    code: "pa",
-    country: "Panama",
-    played: 3,
-    wins: 0,
-    draws: 0,
-    losses: 3,
-    goalsagainst: 2,
-    goalsfor: 11,
-    goaldifference: -9,
-    points: 0
-  },
-  {
-    group: "H",
-    position: 1,
-    code: "co",
-    country: "Colombia",
-    played: 3,
-    wins: 2,
-    draws: 0,
-    losses: 1,
-    goalsagainst: 5,
-    goalsfor: 2,
-    goaldifference: 3,
-    points: 6
-  },
-  {
-    group: "H",
-    position: 2,
-    code: "jp",
-    country: "Japan",
-    played: 3,
-    wins: 1,
-    draws: 1,
-    losses: 1,
-    goalsagainst: 4,
-    goalsfor: 4,
-    goaldifference: 0,
-    points: 4
-  },
-  {
-    group: "H",
-    position: 3,
-    code: "sn",
-    country: "Senegal",
-    played: 3,
-    wins: 1,
-    draws: 1,
-    losses: 1,
-    goalsagainst: 4,
-    goalsfor: 4,
-    goaldifference: 0,
-    points: 4
-  },
-  {
-    group: "H",
-    position: 4,
-    code: "pl",
-    country: "Poland",
-    played: 3,
-    wins: 1,
-    draws: 0,
-    losses: 2,
-    goalsagainst: 2,
-    goalsfor: 5,
-    goaldifference: -3,
-    points: 3
-  }
-];
+export const FIFA18 = {
+         results: [
+           {
+             group: "A",
+             matches: [
+               {
+                 a: {
+                   team: "Russia",
+                   goals: 5
+                 },
+                 b: {
+                   team: "Saudi Arabia",
+                   goals: 0
+                 }
+               },
+               {
+                 a: {
+                   team: "Egypt",
+                   goals: 0
+                 },
+                 b: {
+                   team: "Uruguay",
+                   goals: 1
+                 }
+               },
+               {
+                 a: {
+                   team: "Russia",
+                   goals: 3
+                 },
+                 b: {
+                   team: "Egypt",
+                   goals: 1
+                 }
+               },
+               {
+                 a: {
+                   team: "Uruguay",
+                   goals: 1
+                 },
+                 b: {
+                   team: "Saudi Arabia",
+                   goals: 0
+                 }
+               },
+               {
+                 a: {
+                   team: "Uruguay",
+                   goals: 3
+                 },
+                 b: {
+                   team: "Russia",
+                   goals: 0
+                 }
+               },
+               {
+                 a: {
+                   team: "Saudi Arabia",
+                   goals: 2
+                 },
+                 b: {
+                   team: "Egypt",
+                   goals: 1
+                 }
+               }
+             ]
+           },
+           {
+             group: "B",
+             matches: [
+               {
+                 a: {
+                   team: "Morocco",
+                   goals: 0
+                 },
+                 b: {
+                   team: "Iran",
+                   goals: 1
+                 }
+               },
+               {
+                 a: {
+                   team: "Portugal",
+                   goals: 3
+                 },
+                 b: {
+                   team: "Spain",
+                   goals: 3
+                 }
+               },
+               {
+                 a: {
+                   team: "Portugal",
+                   goals: 1
+                 },
+                 b: {
+                   team: "Morocco",
+                   goals: 0
+                 }
+               },
+               {
+                 a: {
+                   team: "Iran",
+                   goals: 0
+                 },
+                 b: {
+                   team: "Spain",
+                   goals: 1
+                 }
+               },
+                 {
+                     a: {
+                         team: "Iran",
+                         goals: 1
+                     },
+                     b: {
+                         team: "Portugal",
+                         goals: 1
+                     }
+                 },
+                 {
+                     a: {
+                         team: "Morocco",
+                         goals: 2
+                     },
+                     b: {
+                         team: "Spain",
+                         goals: 2
+                     }
+                 }
+             ]
+           },
+             {
+                 group: "C",
+                 matches: [
+                     {
+                         a: {
+                             team: "France",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Australia",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Peru",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Denmark",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Peru",
+                             goals: 0
+                         },
+                         b: {
+                             team: "France",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Australia",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Denmark",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Australia",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Peru",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "France",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Denmark",
+                             goals: 0
+                         }
+                     }
+                 ]
+             },
+             {
+                 group: "D",
+                 matches: [
+                     {
+                         a: {
+                             team: "Argentina",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Iceland",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Croatia",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Nigeria",
+                             goals: 0
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Croatia",
+                             goals: 3
+                         },
+                         b: {
+                             team: "Argentina",
+                             goals: 0
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Iceland",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Nigeria",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Iceland",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Croatia",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Argentina",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Nigeria",
+                             goals: 1
+                         }
+                     }
+                 ]
+             },
+             {
+                 group: "E",
+                 matches: [
+                     {
+                         a: {
+                             team: "Costa Rica",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Serbia",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Brazil",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Switzerland",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Brazil",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Costa Rica",
+                             goals: 0
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Serbia",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Switzerland",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Serbia",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Brazil",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Costa Rica",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Switzerland",
+                             goals: 2
+                         }
+                     }
+                 ]
+             },
+             {
+                 group: "F",
+                 matches: [
+                     {
+                         a: {
+                             team: "Germany",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Mexico",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Sweden",
+                             goals: 1
+                         },
+                         b: {
+                             team: "South Korea",
+                             goals: 0
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Sweden",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Germany",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Mexico",
+                             goals: 2
+                         },
+                         b: {
+                             team: "South Korea",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Mexico",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Sweden",
+                             goals: 3
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Germany",
+                             goals: 0
+                         },
+                         b: {
+                             team: "South Korea",
+                             goals: 2
+                         }
+                     }
+                 ]
+             },
+             {
+                 group: "G",
+                 matches: [
+                     {
+                         a: {
+                             team: "Belgium",
+                             goals: 3
+                         },
+                         b: {
+                             team: "Panama",
+                             goals: 0
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Tunisia",
+                             goals: 1
+                         },
+                         b: {
+                             team: "England",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Tunisia",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Belgium",
+                             goals: 5
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Panama",
+                             goals: 1
+                         },
+                         b: {
+                             team: "England",
+                             goals: 6
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Panama",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Tunisia",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Belgium",
+                             goals: 1
+                         },
+                         b: {
+                             team: "England",
+                             goals: 0
+                         }
+                     }
+                 ]
+             },
+             {
+                 group: "H",
+                 matches: [
+                     {
+                         a: {
+                             team: "Colombia",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Japan",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Poland",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Senegal",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Poland",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Colombia",
+                             goals: 3
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Japan",
+                             goals: 2
+                         },
+                         b: {
+                             team: "Senegal",
+                             goals: 2
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Japan",
+                             goals: 0
+                         },
+                         b: {
+                             team: "Poland",
+                             goals: 1
+                         }
+                     },
+                     {
+                         a: {
+                             team: "Colombia",
+                             goals: 1
+                         },
+                         b: {
+                             team: "Senegal",
+                             goals: 0
+                         }
+                     }
+                 ]
+             }
+        ],
+         tables: [
+           {
+             group: "A",
+             position: 1,
+             code: "uy",
+             country: "Uruguay",
+             played: 3,
+             wins: 3,
+             draws: 0,
+             losses: 0,
+             goalsagainst: 5,
+             goalsfor: 0,
+             goaldifference: 5,
+             points: 9
+           },
+           {
+             group: "A",
+             position: 2,
+             code: "ru",
+             country: "Russia",
+             played: 3,
+             wins: 2,
+             draws: 0,
+             losses: 1,
+             goalsagainst: 8,
+             goalsfor: 4,
+             goaldifference: 4,
+             points: 6
+           },
+           {
+             group: "A",
+             position: 3,
+             code: "sa",
+             country: "Saudi Arabia",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 7,
+             goaldifference: -5,
+             points: 3
+           },
+           {
+             group: "A",
+             position: 4,
+             code: "eg",
+             country: "Egypt",
+             played: 3,
+             wins: 0,
+             draws: 0,
+             losses: 3,
+             goalsagainst: 2,
+             goalsfor: 6,
+             goaldifference: -4,
+             points: 0
+           },
+           {
+             group: "B",
+             position: 1,
+             code: "es",
+             country: "Spain",
+             played: 3,
+             wins: 1,
+             draws: 2,
+             losses: 0,
+             goalsagainst: 6,
+             goalsfor: 5,
+             goaldifference: 1,
+             points: 5
+           },
+           {
+             group: "B",
+             position: 2,
+             code: "pt",
+             country: "Portugal",
+             played: 3,
+             wins: 1,
+             draws: 2,
+             losses: 0,
+             goalsagainst: 5,
+             goalsfor: 4,
+             goaldifference: 1,
+             points: 5
+           },
+           {
+             group: "B",
+             position: 3,
+             code: "ir",
+             country: "Iran",
+             played: 3,
+             wins: 1,
+             draws: 1,
+             losses: 1,
+             goalsagainst: 2,
+             goalsfor: 2,
+             goaldifference: 0,
+             points: 4
+           },
+           {
+             group: "B",
+             position: 4,
+             code: "ma",
+             country: "Morocco",
+             played: 3,
+             wins: 0,
+             draws: 1,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 4,
+             goaldifference: -2,
+             points: 1
+           },
+           {
+             group: "C",
+             position: 1,
+             code: "fr",
+             country: "France",
+             played: 3,
+             wins: 2,
+             draws: 1,
+             losses: 0,
+             goalsagainst: 3,
+             goalsfor: 1,
+             goaldifference: 2,
+             points: 7
+           },
+           {
+             group: "C",
+             position: 2,
+             code: "dk",
+             country: "Denmark",
+             played: 3,
+             wins: 1,
+             draws: 2,
+             losses: 0,
+             goalsagainst: 2,
+             goalsfor: 1,
+             goaldifference: 1,
+             points: 5
+           },
+           {
+             group: "C",
+             position: 3,
+             code: "pe",
+             country: "Peru",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 2,
+             goaldifference: 0,
+             points: 3
+           },
+           {
+             group: "C",
+             position: 4,
+             code: "au",
+             country: "Australia",
+             played: 3,
+             wins: 0,
+             draws: 1,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 5,
+             goaldifference: -3,
+             points: 1
+           },
+           {
+             group: "D",
+             position: 1,
+             code: "hr",
+             country: "Croatia",
+             played: 3,
+             wins: 3,
+             draws: 0,
+             losses: 0,
+             goalsagainst: 7,
+             goalsfor: 1,
+             goaldifference: 6,
+             points: 9
+           },
+           {
+             group: "D",
+             position: 2,
+             code: "ar",
+             country: "Argentina",
+             played: 3,
+             wins: 1,
+             draws: 1,
+             losses: 1,
+             goalsagainst: 3,
+             goalsfor: 5,
+             goaldifference: -2,
+             points: 4
+           },
+           {
+             group: "D",
+             position: 3,
+             code: "ng",
+             country: "Nigeria",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 3,
+             goalsfor: 4,
+             goaldifference: -1,
+             points: 3
+           },
+           {
+             group: "D",
+             position: 4,
+             code: "is",
+             country: "Iceland",
+             played: 3,
+             wins: 0,
+             draws: 1,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 5,
+             goaldifference: -3,
+             points: 1
+           },
+           {
+             group: "E",
+             position: 1,
+             code: "br",
+             country: "Brazil",
+             played: 3,
+             wins: 2,
+             draws: 1,
+             losses: 0,
+             goalsagainst: 5,
+             goalsfor: 1,
+             goaldifference: 4,
+             points: 7
+           },
+           {
+             group: "E",
+             position: 2,
+             code: "ch",
+             country: "Switzerland",
+             played: 3,
+             wins: 1,
+             draws: 2,
+             losses: 0,
+             goalsagainst: 5,
+             goalsfor: 4,
+             goaldifference: 1,
+             points: 5
+           },
+           {
+             group: "E",
+             position: 3,
+             code: "rs",
+             country: "Serbia",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 4,
+             goaldifference: -2,
+             points: 3
+           },
+           {
+             group: "E",
+             position: 4,
+             code: "cr",
+             country: "Costa Rica",
+             played: 3,
+             wins: 0,
+             draws: 1,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 5,
+             goaldifference: -3,
+             points: 1
+           },
+           {
+             group: "F",
+             position: 1,
+             code: "se",
+             country: "Sweden",
+             played: 3,
+             wins: 2,
+             draws: 0,
+             losses: 1,
+             goalsagainst: 5,
+             goalsfor: 2,
+             goaldifference: 3,
+             points: 6
+           },
+           {
+             group: "F",
+             position: 2,
+             code: "mx",
+             country: "Mexico",
+             played: 3,
+             wins: 2,
+             draws: 0,
+             losses: 1,
+             goalsagainst: 3,
+             goalsfor: 4,
+             goaldifference: -1,
+             points: 6
+           },
+           {
+             group: "F",
+             position: 3,
+             code: "kr",
+             country: "South Korea",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 3,
+             goalsfor: 3,
+             goaldifference: 0,
+             points: 3
+           },
+           {
+             group: "F",
+             position: 4,
+             code: "de",
+             country: "Germany",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 4,
+             goaldifference: -2,
+             points: 3
+           },
+           {
+             group: "G",
+             position: 1,
+             code: "be",
+             country: "Belgium",
+             played: 3,
+             wins: 3,
+             draws: 0,
+             losses: 0,
+             goalsagainst: 9,
+             goalsfor: 2,
+             goaldifference: 7,
+             points: 9
+           },
+           {
+             group: "G",
+             position: 2,
+             code: "gb",
+             country: "England",
+             played: 3,
+             wins: 2,
+             draws: 0,
+             losses: 1,
+             goalsagainst: 8,
+             goalsfor: 3,
+             goaldifference: 5,
+             points: 6
+           },
+           {
+             group: "G",
+             position: 3,
+             code: "tn",
+             country: "Tunisia",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 5,
+             goalsfor: 8,
+             goaldifference: -3,
+             points: 3
+           },
+           {
+             group: "G",
+             position: 4,
+             code: "pa",
+             country: "Panama",
+             played: 3,
+             wins: 0,
+             draws: 0,
+             losses: 3,
+             goalsagainst: 2,
+             goalsfor: 11,
+             goaldifference: -9,
+             points: 0
+           },
+           {
+             group: "H",
+             position: 1,
+             code: "co",
+             country: "Colombia",
+             played: 3,
+             wins: 2,
+             draws: 0,
+             losses: 1,
+             goalsagainst: 5,
+             goalsfor: 2,
+             goaldifference: 3,
+             points: 6
+           },
+           {
+             group: "H",
+             position: 2,
+             code: "jp",
+             country: "Japan",
+             played: 3,
+             wins: 1,
+             draws: 1,
+             losses: 1,
+             goalsagainst: 4,
+             goalsfor: 4,
+             goaldifference: 0,
+             points: 4
+           },
+           {
+             group: "H",
+             position: 3,
+             code: "sn",
+             country: "Senegal",
+             played: 3,
+             wins: 1,
+             draws: 1,
+             losses: 1,
+             goalsagainst: 4,
+             goalsfor: 4,
+             goaldifference: 0,
+             points: 4
+           },
+           {
+             group: "H",
+             position: 4,
+             code: "pl",
+             country: "Poland",
+             played: 3,
+             wins: 1,
+             draws: 0,
+             losses: 2,
+             goalsagainst: 2,
+             goalsfor: 5,
+             goaldifference: -3,
+             points: 3
+           }
+         ]
+       };
 
 export const FILES = [
     {

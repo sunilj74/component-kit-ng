@@ -67,14 +67,49 @@ export class DataForTreeService {
         subGroups: []
     };
     let groups = FIFA18
+                    .tables
                     .map(p=>p.group)
                     .filter((p,i,a)=>a.indexOf(p)===i);
     groups.forEach(p=>{
+        let groupMatches = null;
+
+        let groupResults = FIFA18
+            .results
+            .find(x => x.group == p);
+        if(groupResults!=null){
+            groupMatches = groupResults
+                .matches
+                .map(x => { 
+                    let aclass = "draw", bclass = "draw";
+                    if(x.a.goals>x.b.goals){
+                        aclass = "winner";
+                        bclass = "loser";
+                    }
+                    if (x.b.goals > x.a.goals) {
+                        bclass = "winner";
+                        aclass = "loser";
+                    }
+
+
+                    return { 
+                        groupKey: `${x.a.team} ${x.a.goals}-${x.b.goals} ${x.b.team}`,
+                        extras: {
+                            ateam: x.a.team,
+                            aclass: aclass,
+                            bteam: x.b.team,
+                            bclass: bclass,
+                            score: `${x.a.goals}-${x.b.goals}`
+                        }
+                    }; 
+                });
+        }
+
         let node:TreeNodeType = {
             groupKey: `GROUP ${p}`,
             textClass: "my-tree-group my-tree-group-"+p.toLowerCase(),
             isClosed: "A"!=p,
-            data: [FIFA18.filter(q=>{ 
+            subGroups: groupMatches,
+            data: [FIFA18.tables.filter(q=>{ 
                 return q.group==p;
             })]
         }

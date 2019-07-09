@@ -46,10 +46,18 @@
     display: block;
 }
 
-.data-tree-node {
+.data-tree-node:hover {
+    background-color: #f5f5f5;
+}
+
+.data-tree-branch {
     font-weight: bold;
 }
 
 .data-tree-leaf {
     font-weight: normal;
+}
+
+.data-tree-selected {
+    background-color: lightblue !important;
 }

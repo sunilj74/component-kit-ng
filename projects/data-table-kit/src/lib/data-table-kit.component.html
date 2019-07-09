@@ -3,7 +3,7 @@
         <ng-container #rowColumns></ng-container>
     </tr>
 </ng-template>
-<table [ngClass]="'data-table '+datatableClass" style="width: 100%;">
+<table [ngClass]="'data-table '+datatableClass" style="width: 100%;" [id]="'grid_'+gridid">
     <thead>
         <tr *ngIf="groups!=null&&groups.length>0" class="header">
             <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.thGroup">
@@ -44,7 +44,7 @@
     <tbody>
         <ng-container #gridBody></ng-container>
         <ng-container *ngFor="let row of pagedata; let rowidx=index;">
-            <tr class="data">
+            <tr class="data" (click)="clickRow($event, rowidx)">
                 <td *ngIf="haschildren&&collapseChildren!=null">
                     <div [attr.data-toggle]="collapseChildren?'+':'-'" (click)="toggleChildren($event, rowidx)" [ngClass]="'data-table-toggler-'+gridid+' data-table-'+(collapseChildren?'plus':'minus')">&nbsp;</div>
                 </td>

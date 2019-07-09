@@ -1,5 +1,15 @@
 <ng-container *ngIf="treeTableData | async; let data; else loading">
   <data-tree [treeData]="data?.subGroups">
+    <ng-container *data-tree-header-template="let treeNode = data;">
+      <div *ngIf="treeNode!=null && treeNode.extras!=null; else simple">
+        <span [ngClass]="treeNode.extras.aclass">{{treeNode.extras.ateam}}</span>
+        <span class="score">{{treeNode.extras.score}}</span>
+        <span [ngClass]="treeNode.extras.bclass">{{treeNode.extras.bteam}}</span>
+      </div>
+      <ng-template #simple>
+        {{treeNode?.groupKey}}
+      </ng-template>
+    </ng-container>
     <ng-container *data-tree-template="let tableData = data;">
       <data-table [tabledata]="tableData" [data-table-class]="'my-table'">
         <div *data-table-column='let row=data; align:"right"; width: "60px"; header: "Position"'>

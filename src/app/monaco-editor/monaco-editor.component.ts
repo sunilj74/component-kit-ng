@@ -15,6 +15,7 @@ export class MonacoEditorComponent implements OnInit, OnChanges {
     fontSize: "20px",
     scrollBeyondLastLine: false,
     scrollBeyondLastColumn: false,
+    quickSuggestions: false,
     readOnly: false
   };
 
@@ -50,6 +51,15 @@ export class MonacoEditorComponent implements OnInit, OnChanges {
   }
 
   editorInitialized(e){
+    let windowMonaco = (<any>window).monaco.languages;
+    if(windowMonaco!=null){
+      if(windowMonaco.typescript!=null){
+        windowMonaco.typescript.typescriptDefaults.setCompilerOptions({
+          noLib: false,
+          allowNonTsExtensions: true
+        });
+      }
+    }
     this.editor = e;
   }
 

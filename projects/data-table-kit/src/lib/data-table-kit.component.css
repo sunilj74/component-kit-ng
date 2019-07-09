@@ -70,6 +70,7 @@
 }
 
 .data-table-input-pageno {
+    background-color: transparent;
     border: 0 !important;
     border-top: 0 !important;
     border-bottom: 0 !important;
@@ -241,4 +242,8 @@
 @keyframes fadein {
     from { opacity: 0;}
     to {opacity: 1;}
+}
+
+.data-table-selected {
+    background-color: lightblue !important;
 }

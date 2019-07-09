@@ -8,17 +8,29 @@
                 <td>
                     <div>
                         <div *ngIf="node.iconClass!=''" [ngClass]="node.iconClass" style="display: inline-block">&nbsp;</div>
-                        <div [ngClass]="(node.textClass!=null&&node.textClass.length>0?node.textClass:(node.subGroups!=null||node.data!=null)?nodeClass:leafClass)" style="display: inline-block">{{node.groupKey}}</div>
+                        <div (click)="clickNode($event, node)" [ngClass]="'data-tree-node '+(node.textClass!=null&&node.textClass.length>0?node.textClass:(node.subGroups!=null||node.data!=null)?nodeClass:leafClass)" style="display: inline-block">
+                            <ng-container *ngIf="TreeHeaderTemplate!=null&&TreeHeaderTemplate.TreeHeaderTemplate!=null; else textHeader">
+                                <data-tree-cell [data]="node" [treeTemplate]="TreeHeaderTemplate?.TreeHeaderTemplate"></data-tree-cell>
+                            </ng-container>
+                            <ng-template #textHeader>
+                                {{node.groupKey}}
+                            </ng-template>
+                        </div>
                     </div>
                     <div [id]="treeId+'_'+rootId+'_'+i" [ngClass]="(node.isClosed==true?'data-tree-collapse':'data-tree-collapse in')+' data-tree-branch'">
-                        <data-tree *ngIf="node.subGroups != null" [treeData]="node.subGroups" [rootId]="treeId+'_'+rootId"
+                        <data-tree (initialized)="handleTreeInit($event)" *ngIf="node.subGroups != null" [treeData]="node.subGroups" [rootId]="treeId+'_'+rootId"
                             [rootNode]="rootNode||data" [isCollapsed]="node.isClosed" [node-class]="nodeClass" [leaf-class]="leafClass">
-                            <div *data-tree-template="let section = data;">
-                                <div *ngTemplateOutlet="treeTemplate?.TreeTemplate; context: {data: section}"></div>
-                            </div>
+                            <ng-container *ngIf="TreeHeaderTemplate!=null&&TreeHeaderTemplate.TreeHeaderTemplate!=null">
+                                <ng-container *data-tree-header-template="let item = data;">
+                                    <ng-container *ngTemplateOutlet="TreeHeaderTemplate?.TreeHeaderTemplate; context: {data: item}"></ng-container>
+                                </ng-container>
+                                <ng-container *data-tree-template="let section = data;">
+                                    <ng-container *ngTemplateOutlet="TreeTemplate?.TreeTemplate; context: {data: section}"></ng-container>
+                                </ng-container>
+                            </ng-container>
                         </data-tree>
                         <ng-container *ngFor="let row of node.data; let idx = index">
-                            <data-tree-cell [data]="row" [treeTemplate]="treeTemplate?.TreeTemplate"></data-tree-cell>
+                            <data-tree-cell [data]="row" [treeTemplate]="TreeTemplate?.TreeTemplate"></data-tree-cell>
                         </ng-container>
                     </div>
                 </td>

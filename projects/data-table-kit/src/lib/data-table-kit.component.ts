@@ -25,6 +25,7 @@ export class DataTableKitComponent implements AfterContentInit {
   @Input("collapse-children") collapseChildren: any = null;
   @Output() bufferedPageNoChanged = new EventEmitter<any>();
   @Output() sortOrderChanged = new EventEmitter<any>();
+  @Output() selectionChanged = new EventEmitter<any>();
 
   pageno: number = 0;
   pagedata: any[];
@@ -36,6 +37,8 @@ export class DataTableKitComponent implements AfterContentInit {
   haschildren: boolean = false;
   sortInfo: any[] = [];
   gridid: string = "g" + this.uuidv4();
+  selectedRows: any[] =  [];
+  
 
   gridStyle: any = {
     thSep: {
@@ -520,6 +523,47 @@ export class DataTableKitComponent implements AfterContentInit {
       return this.propertyValue(value, rightPath);
     }
     return value;
+  }
+
+  clearSelections(){
+    this.selectedRows = [];
+    let rowSelector = `#grid_${this.gridid}>tbody>tr`;
+    let allRows = this.doc.querySelectorAll(rowSelector);
+    allRows.forEach(p=>{
+      if(p!=null&&p.classList!=null){
+        p.classList.remove('data-table-selected');
+      }
+
+    });
+  }
+
+  clickRow(event, rowIdx){
+    let clear = true;
+    if (event != null && event.ctrlKey) {
+      clear = false;
+    }
+    if(clear){
+      this.clearSelections();
+    }
+    let adjustedRowIdx = rowIdx+(this.pageno*this.pagesize);
+    let idx  = this.selectedRows.indexOf(adjustedRowIdx);
+    if(idx!=-1){
+      this.selectedRows.splice(idx, 1);
+    }
+    else{
+      this.selectedRows.push(adjustedRowIdx);
+    }
+    let cllickInfo = {
+      event: event,
+      rowIdx: adjustedRowIdx,
+      selectedRows: this.selectedRows.map(p => p),
+      bufferOffset: this.bufferedpageno * this.bufferedpagecount * this.pagesize
+    };
+    let trElement = event.currentTarget;
+    if(trElement!=null){
+      trElement.classList.toggle("data-table-selected");
+    }
+    this.selectionChanged.emit(cllickInfo);
   }
 }
 
