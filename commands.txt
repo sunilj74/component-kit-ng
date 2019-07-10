@@ -1,0 +1,14 @@
+build data-tree-kit
+ng build data-tree-kit
+
+build data-table-kit
+ng build data-table-kit
+
+npm js
+go to dist/<project-folder> and run
+npm publish
+
+
+build product with aot without hashing for uploading to github pages
+ng build --prod --aot --output-hashing none --output-path docs --base-href /component-kit-ng/
+
