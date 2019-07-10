@@ -6,7 +6,8 @@ export const CODEPATHS: any[] = [
              "/app/country-table/country-table.component.css",
              "/app/country-table/country-table.component.html",
              "/app/country-table/country-table.component.ts",
-             "/app/datafortable.service.ts"
+             "/app/datafortable.service.ts",
+             "/app/countries.data.ts"
            ]
          },
          {
@@ -16,7 +17,8 @@ export const CODEPATHS: any[] = [
              "/app/orderstable/orderstable.component.css",
              "/app/orderstable/orderstable.component.html",
              "/app/orderstable/orderstable.component.ts",
-             "/app/datafortable.service.ts"
+             "/app/datafortable.service.ts",
+             "/app/orders.data.ts"
            ]
          },
          {
@@ -36,7 +38,8 @@ export const CODEPATHS: any[] = [
              "/app/basictree/basictree.component.css",
              "/app/basictree/basictree.component.html",
              "/app/basictree/basictree.component.ts",
-             "/app/datafortree.service.ts"
+             "/app/datafortree.service.ts",
+             "/app/files.data.ts"
            ]
          },
          {
@@ -46,7 +49,8 @@ export const CODEPATHS: any[] = [
              "/app/treetable/treetable.component.css",
              "/app/treetable/treetable.component.html",
              "/app/treetable/treetable.component.ts",
-             "/app/datafortree.service.ts"
+             "/app/datafortree.service.ts",
+             "/app/wc.data.ts"
            ]
          }
        ];
