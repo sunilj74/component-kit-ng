@@ -27,19 +27,6 @@ import { MonacoEditorComponent } from './monaco-editor/monaco-editor.component';
 import { environment } from "../environments/environment";
 
 
-const monacoConfig: NgxMonacoEditorConfig = {
-  // configure base path for monaco editor
-  baseUrl: environment.production ? "/component-kit-ng/assets" : "",
-
-  // pass default options to be used
-  defaultOptions: { scrollBeyondLastLine: false },
-
-  // here monaco object will be available as window.monaco use this function to extend monaco editor functionality.
-  //onMonacoLoad: () => {
-  //  console.log((<any>window).monaco);
-  //}
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +46,7 @@ const monacoConfig: NgxMonacoEditorConfig = {
     BrowserAnimationsModule,
     AppRoutingModule,
     FormsModule,
-    MonacoEditorModule.forRoot(monacoConfig),
+    MonacoEditorModule.forRoot(),
     SharedModule,
     HttpClientModule,
     DataTableKitModule,

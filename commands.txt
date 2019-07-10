@@ -10,5 +10,7 @@ npm publish
 
 
 build product with aot without hashing for uploading to github pages
+ng build --prod --aot --output-hashing none --output-path docs
+following not needed because of custom domain
 ng build --prod --aot --output-hashing none --output-path docs --base-href /component-kit-ng/
 
