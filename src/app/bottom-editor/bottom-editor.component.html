@@ -6,7 +6,7 @@
       <span class="codename pr-lg pt-sm">{{title}}</span>
       <mat-button-toggle-group name="fileTypes" [(ngModel)]="file">
         <ng-container *ngFor="let f of files">
-          <mat-button-toggle [value]="f">{{f.language}}</mat-button-toggle>
+          <mat-button-toggle [value]="f">{{f.fileName}}</mat-button-toggle>
         </ng-container>
       </mat-button-toggle-group>
     </div>

@@ -19,6 +19,12 @@
     letter-spacing: 2px;
 }
 
+.mat-button-toggle {
+    font-size: small;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+
 .mat-button-toggle-checked {
     background-color: goldenrod;
 }
