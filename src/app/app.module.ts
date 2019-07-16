@@ -25,6 +25,9 @@ import { LargeTableComponent } from './large-table/large-table.component';
 import { BottomEditorComponent } from './bottom-editor/bottom-editor.component';
 import { MonacoEditorComponent } from './monaco-editor/monaco-editor.component';
 import { environment } from "../environments/environment";
+import { EditInlineComponent } from './edit-inline/edit-inline.component';
+import { EditFullTableComponent } from './edit-full-table/edit-full-table.component';
+import { EditPopupComponent } from './edit-popup/edit-popup.component';
 
 
 @NgModule({
@@ -39,7 +42,10 @@ import { environment } from "../environments/environment";
     BasicTreeComponent,
     LargeTableComponent,
     BottomEditorComponent,
-    MonacoEditorComponent
+    MonacoEditorComponent,
+    EditInlineComponent,
+    EditFullTableComponent,
+    EditPopupComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,28 @@
+<data-table [tabledata]="employees" allowResize="true" pagesize="20" [data-table-class]="'my-table'">
+  <div *data-table-column='let row=data; let rowNo=rowIndex; align:"right"; header: "#";'>
+    {{rowNo+1}}
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; let rowNo=rowIndex; align:"left"; header: "Id";'>
+      {{row?.id}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "First Name";'>
+    {{row?.firstname}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Last Name";'>
+    {{row?.lastname}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Position";'>
+    {{row?.position}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Vacations";'>
+    {{row?.vacations}}
+  </div>
+  <div *data-table-column='let row=data; let rowno=rowIndex; align:"center";'>
+    <button class="table-action-button" (click)="editRow($event, row, rowno)">
+      <mat-icon color="primary" class="table-action-icon">edit</mat-icon>
+    </button>
+    <button class="table-action-button" (click)="deleteRow($event, row, rowno)">
+      <mat-icon color="warn" class="table-action-icon">delete</mat-icon>
+    </button>
+  </div>
+</data-table>

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, SimpleChanges, AfterContentInit, ContentChildren, QueryList, ViewContainerRef, ViewChild, TemplateRef, Inject, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, SimpleChanges, AfterContentInit, AfterViewInit, ContentChildren, QueryList, ViewContainerRef, ViewChild, TemplateRef, Inject, ChangeDetectionStrategy, ViewChildren, ElementRef } from '@angular/core';
 import { DataTableColumnDirective } from './data-table-column.directive';
 import { DataTableChildDirective } from './data-table-child.directive';
 import { DOCUMENT } from '@angular/common';
@@ -9,10 +9,10 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ["./data-table-kit.component.css"],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class DataTableKitComponent implements AfterContentInit {
-  @ViewChild("gridBody", { read: ViewContainerRef, static: false })
-  _viewContainerRef: ViewContainerRef;
+export class DataTableKitComponent implements AfterContentInit, AfterViewInit {
+  @ViewChild("gridBody", { read: ViewContainerRef, static: false }) _viewContainerRef: ViewContainerRef;
   @ViewChild("columnTemplate", { static: false }) _columnTemplate: TemplateRef<any>;
+  @ViewChild("tableHeader", { static: false }) TableHeader: ElementRef;
   @ContentChildren(DataTableColumnDirective) Columns: QueryList<DataTableColumnDirective>;
   @ContentChildren(DataTableChildDirective) Children: QueryList<DataTableChildDirective>;
   @Input("data-table-class") datatableClass: string;
@@ -23,9 +23,13 @@ export class DataTableKitComponent implements AfterContentInit {
   @Input() allowResize: boolean = true;
   @Input() pagesize: number = 0;
   @Input("collapse-children") collapseChildren: any = null;
+  @Input("allow-multiselect") multiSelect: boolean = false;
   @Output() bufferedPageNoChanged = new EventEmitter<any>();
   @Output() sortOrderChanged = new EventEmitter<any>();
   @Output() selectionChanged = new EventEmitter<any>();
+  @Output() editStarted = new EventEmitter<any>();
+  @Output() editCompleted = new EventEmitter<any>();
+  @Output() editCancelled = new EventEmitter<any>();
 
   pageno: number = 0;
   pagedata: any[];
@@ -37,8 +41,8 @@ export class DataTableKitComponent implements AfterContentInit {
   haschildren: boolean = false;
   sortInfo: any[] = [];
   gridid: string = "g" + this.uuidv4();
-  selectedRows: any[] =  [];
-  
+  selectedRows: any[] = [];
+  editingRow: number = -1;
 
   gridStyle: any = {
     thSep: {
@@ -91,7 +95,19 @@ export class DataTableKitComponent implements AfterContentInit {
   ngAfterContentInit() {
     this.haschildren = this.Children != null && this.Children.length > 0;
     this.columnCount = this.Columns == null ? 0 : this.Columns.length * 2 - 1;
-    this.setupGroupHeaders();
+    this.setupColumns();
+  }
+
+  ngAfterViewInit(){
+    // following code is to fix columns from resizing on page change and edit
+    if(this.TableHeader!=null&&this.TableHeader.nativeElement!=null&&this.TableHeader.nativeElement.children!=null){
+      let children = this.TableHeader.nativeElement.children;
+      for(let i=0;i<(children.length-1);i++){
+        if(children[i]!=null){
+          children[i].style.width = children[i].clientWidth+"px";
+        }
+      }
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -118,11 +134,18 @@ export class DataTableKitComponent implements AfterContentInit {
     return gcColumn.headers;
   }
 
-  setupGroupHeaders() {
+  setupColumns() {
     let groupHeaders = [];
     let found = false;
     if (this.Columns != null) {
       let columns = this.Columns.toArray();
+      let noWidthColumns = columns.filter(p=>p.columnWidth==null||p.columnWidth=="");
+      if(noWidthColumns.length>1){
+        let equalWidth = `${Math.round(100/noWidthColumns.length)}px`;
+        noWidthColumns.splice(noWidthColumns.length-1, 1);
+        //noWidthColumns.forEach(p=>p.columnWidth=equalWidth);
+      }
+      //update group header to empty for columns where it is not specified
       let i = 0;
       while (i < columns.length) {
         let group = {};
@@ -525,32 +548,35 @@ export class DataTableKitComponent implements AfterContentInit {
     return value;
   }
 
-  clearSelections(){
+  clearSelections() {
     this.selectedRows = [];
     let rowSelector = `#grid_${this.gridid}>tbody>tr`;
     let allRows = this.doc.querySelectorAll(rowSelector);
-    allRows.forEach(p=>{
-      if(p!=null&&p.classList!=null){
-        p.classList.remove('data-table-selected');
+    allRows.forEach(p => {
+      if (p != null && p.classList != null) {
+        p.classList.remove("data-table-selected");
       }
-
     });
   }
 
-  clickRow(event, rowIdx){
-    let clear = true;
-    if (event != null && event.ctrlKey) {
-      clear = false;
+  clickRow(event, rowIdx) {
+    let adjustedRowIdx = rowIdx + this.pageno * this.pagesize;
+    if(this.editingRow!=adjustedRowIdx){
+      this.clearEdits();
     }
-    if(clear){
+    let clear = true;
+    if (this.multiSelect) {
+      if (event != null && event.ctrlKey) {
+        clear = false;
+      }
+    }
+    if (clear) {
       this.clearSelections();
     }
-    let adjustedRowIdx = rowIdx+(this.pageno*this.pagesize);
-    let idx  = this.selectedRows.indexOf(adjustedRowIdx);
-    if(idx!=-1){
+    let idx = this.selectedRows.indexOf(adjustedRowIdx);
+    if (idx != -1) {
       this.selectedRows.splice(idx, 1);
-    }
-    else{
+    } else {
       this.selectedRows.push(adjustedRowIdx);
     }
     let cllickInfo = {
@@ -560,10 +586,19 @@ export class DataTableKitComponent implements AfterContentInit {
       bufferOffset: this.bufferedpageno * this.bufferedpagecount * this.pagesize
     };
     let trElement = event.currentTarget;
-    if(trElement!=null){
+    if (trElement != null) {
       trElement.classList.toggle("data-table-selected");
     }
     this.selectionChanged.emit(cllickInfo);
+  }
+
+  clearEdits(){
+    this.editingRow = -1;
+  }
+
+  dblclickRow(event, rowIdx){
+    console.log("edit row "+rowIdx);
+    this.editingRow = rowIdx;
   }
 }
 

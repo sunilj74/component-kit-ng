@@ -1,6 +1,14 @@
 <data-table [tabledata]="countryData" allowResize="true" pagesize="20" [data-table-class]="'my-table'" >
-  <div *data-table-column='let row=data; align:"left"; header: "Code"; sort:"code";'>
-    {{row?.code}}
+  <div *data-table-column='let row=data; let rowNo=rowIndex; align:"right"; header: "#";'>
+    {{rowNo+1}}
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; let rowNo=rowIndex; align:"left"; header: "Code"; sort:"code";'>
+    <div *ngIf="edit; else noedit">
+      <input type="text" [(ngModel)]="row.code" size="2" maxlength="2">
+    </div>
+    <ng-template #noedit>
+      {{row?.code}}
+    </ng-template>
   </div>
   <div *data-table-column='let row=data; align:"left"; header: "Name"; sort:"name";'>
     {{row?.name}}

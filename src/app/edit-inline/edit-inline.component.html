@@ -1,0 +1,41 @@
+<data-table [tabledata]="employees" allowResize="true" pagesize="20" [data-table-class]="'my-table'">
+  <div *data-table-column='let row=data; let rowNo=rowIndex; align:"right"; header: "#";'>
+    {{rowNo+1}}
+  </div>
+  <div *data-table-column='let row=data; let rowNo=rowIndex; align:"left"; header: "Id";'>
+    {{row?.id}}
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; align:"left"; header: "First Name";'>
+    <div *ngIf="edit; else noedit">
+      <input type="text" class="table-input" [(ngModel)]="row.firstname" size="20" maxlength="40">
+    </div>
+    <ng-template #noedit>
+      {{row?.firstname}}
+    </ng-template>
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; align:"left"; header: "Last Name";'>
+    <div *ngIf="edit; else noedit">
+      <input type="text" class="table-input" [(ngModel)]="row.lastname" size="20" maxlength="40">
+    </div>
+    <ng-template #noedit>
+      {{row?.lastname}}
+    </ng-template>
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; align:"left"; header: "Position";'>
+    <div *ngIf="edit; else noedit">
+      <input type="text" class="table-input" [(ngModel)]="row.position" size="20" maxlength="40">
+    </div>
+    <ng-template #noedit>
+      {{row?.position}}
+    </ng-template>
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; align:"right"; header: "Vacations";'>
+    <div *ngIf="edit; else noedit">
+      <input type="number" class="table-input table-input-number" [(ngModel)]="row.vacations" size="2" maxlength="2">
+    </div>
+    <ng-template #noedit>
+      {{row?.vacations}}
+    </ng-template>
+  </div>
+</data-table>
+

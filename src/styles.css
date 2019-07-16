@@ -172,3 +172,19 @@ h1, h2, h3, h4, h5 {
     height: 900px;
     background-color: gray;
 }
+
+.section-title {
+    color: gray;
+    font-family: 'Concert One';
+    font-size: 30px;
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 5px;
+}
+
+.code-sample {
+    font-family: monospace;
+    padding: 10px 30px;
+    letter-spacing: normal;
+    white-space: pre;
+}

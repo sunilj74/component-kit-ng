@@ -14,7 +14,47 @@ export class DatatableComponent implements OnInit {
   countryData$: Observable<any>;
   largeData$: Observable<any>;
 
-  constructor(private bottomSheet: MatBottomSheet, private dataService: DataForTableService) {}
+  sample: any = {
+    import: `
+import { DataTableKitModule } from 'data-table-kit';
+
+@NgModule({
+  declarations: [
+    ...
+  ],
+  imports: [
+    ...
+    DataTableKitModule
+  ],
+  ...
+})
+  `,
+    template: `
+<data-table [tabledata]="<yourdata>" allowResize="true" pagesize="20">
+  <div *data-table-column='let row=data; align:"left"; header: "Header"; sort:"code";'>
+    {{row?.*field*}}
+  </div>
+  <div *data-table-column='let row=data; align:"center"; header: ["Multi-Line", "Header"];'>
+    {{row?.*field1*}}<br/>
+    {{row?.*field2*}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Amount"; groupHeader:"Invoiced Amount"; groupColumns: 3;'>
+    {{row?.amount | currency}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Tax";'>
+    {{row?.tax | currency}}
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Total";'>
+    {{row?.total | currency}}
+  </div>
+</data-table>
+  `
+  };
+
+  constructor(
+    private bottomSheet: MatBottomSheet,
+    private dataService: DataForTableService
+  ) {}
 
   ngOnInit() {
     this.ordersData$ = this.dataService.fetchOrders();
@@ -28,11 +68,10 @@ export class DatatableComponent implements OnInit {
     );
   }
 
-  handleViewCode(event, codeType){
+  handleViewCode(event, codeType) {
     let config: MatBottomSheetConfig<any> = new MatBottomSheetConfig();
     config.panelClass = "bottom-sheet";
     config.data = codeType;
     this.bottomSheet.open(BottomEditorComponent, config);
   }
-
 }

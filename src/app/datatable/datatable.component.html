@@ -51,6 +51,38 @@
             </li>
         </ul>
     </mat-expansion-panel>
+    <mat-expansion-panel expanded="false">
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    USAGE
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Install, Import and Template
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <ul class="normal list">
+            <li>
+                <div>Install data-table-kit component in your Angular Application</div>
+                <div>Go to your application folder and run</div>
+                <div class="code-sample">$npm install data-table-kit --save</div>
+            </li>
+            <li>
+                <div>After installing add module to your Angular module file</div>
+                <div class="code-sample">
+                    {{sample?.import}}
+                </div>
+            </li>
+            <li>
+                <div>And add this to your component template</div>
+                <div class="code-sample">
+                    {{sample?.template}}
+                </div>
+            </li>
+        </ul>
+    </mat-expansion-panel>
+    <div class="section-title">SAMPLES</div>
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <div class="middle width100">
@@ -105,4 +137,57 @@
         <large-table [large-data]="largeData$ | async" (bufferedPageChanged)="handleBufferedPageChanged($event)">
         </large-table>
     </mat-expansion-panel>
+    <div class="section-title">SAMPLES FOR EDITABLE TABLES</div>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    POPUP TABLE EDIT
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Edit DataTable using a Popup/Modal.
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'POPUPDATATABLE')">
+            <mat-icon inline="true">code</mat-icon> View Code
+        </button>
+        <div class="pb-small">&nbsp;</div>
+        <edit-popup></edit-popup>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    INLINE TABLE EDIT
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Edit DataTable Inline.
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'INLINEDATATABLE')">
+            <mat-icon inline="true">code</mat-icon> View Code
+        </button>
+        <div class="pb-small">&nbsp;</div>
+        <edit-inline></edit-inline>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <div class="middle width100">
+                <div class="middle-me left about">
+                    FULL TABLE EDIT
+                </div>
+                <div class="middle-me right sub-title pr-sm">
+                    Full DataTable Edit
+                </div>
+            </div>
+        </mat-expansion-panel-header>
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'INLINEDATATABLE')">
+            <mat-icon inline="true">code</mat-icon> View Code
+        </button>
+        <div class="pb-small">&nbsp;</div>
+        <edit-full-table></edit-full-table>
+    </mat-expansion-panel>
+
 </mat-accordion>

@@ -1,0 +1,14 @@
+.table-action-icon {
+    font-size: 14px;
+    line-height: normal !important;
+}
+
+.table-action-button {
+    background-color: transparent;
+    border: 0px;
+    cursor: pointer;
+    padding: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
+    outline: none;
+}

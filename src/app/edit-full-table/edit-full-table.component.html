@@ -1,0 +1,20 @@
+<data-table [tabledata]="employees" allowResize="true" pagesize="20" [data-table-class]="'my-table'">
+  <div *data-table-column='let row=data; let rowNo=rowIndex; align:"right"; header: "#";'>
+    {{rowNo+1}}
+  </div>
+  <div *data-table-column='let row=data; let edit=editing; let rowNo=rowIndex; align:"left"; header: "Id";'>
+    {{row?.id}}
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "First Name";'>
+    <input type="text" class="table-input" [(ngModel)]="row.firstname" size="20" maxlength="40">
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Last Name";'>
+    <input type="text" class="table-input"[(ngModel)]="row.lastname" size="20" maxlength="40">
+  </div>
+  <div *data-table-column='let row=data; align:"left"; header: "Position";'>
+    <input type="text" class="table-input" [(ngModel)]="row.position" size="20" maxlength="40">
+  </div>
+  <div *data-table-column='let row=data; align:"right"; header: "Vacations";'>
+    <input type="number" class="table-input table-input-number" [(ngModel)]="row.vacations" size="2" maxlength="2">
+  </div>
+</data-table>

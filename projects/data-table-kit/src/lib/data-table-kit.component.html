@@ -17,7 +17,7 @@
                 </th>
             </ng-template>
         </tr>
-        <tr class="header" (mousemove)="allowResize?resizeColumn($event):null">
+        <tr #tableHeader class="header" (mousemove)="allowResize?resizeColumn($event):null">
             <th *ngIf="haschildren&&collapseChildren!=null" [className]="gridClass.th" [ngStyle]="gridStyle.th">
                 <div class="data-table-plus" style="font-size: smaller;" (click)="dataTableCollapseChildren($event, false)">&nbsp;</div>
                 <div class="data-table-minus" style="font-size: smaller;" (click)="dataTableCollapseChildren($event, true)">&nbsp;</div>
@@ -44,14 +44,14 @@
     <tbody>
         <ng-container #gridBody></ng-container>
         <ng-container *ngFor="let row of pagedata; let rowidx=index;">
-            <tr class="data" (click)="clickRow($event, rowidx)">
+            <tr class="data" (click)="clickRow($event, rowidx)" (dblclick)="dblclickRow($event, rowidx)">
                 <td *ngIf="haschildren&&collapseChildren!=null">
                     <div [attr.data-toggle]="collapseChildren?'+':'-'" (click)="toggleChildren($event, rowidx)" [ngClass]="'data-table-toggler-'+gridid+' data-table-'+(collapseChildren?'plus':'minus')">&nbsp;</div>
                 </td>
                 <ng-template ngFor let-colIndex="index" let-col [ngForOf]="Columns">
                     <td *ngIf="colIndex>0" [className]="gridClass.tdSep" [ngStyle]="gridStyle.tdSep"></td>
                     <td [className]="gridClass.td" [ngStyle]="col.dtcStyle">
-                        <data-table-cell [data]="row" [column]="col" [fadein]="fadein"></data-table-cell>
+                        <data-table-cell [data]="row" [column]="col" [fadein]="fadein" [editing]="rowidx==editingRow" [rowIndex]="rowidx + (pageno * pagesize)"></data-table-cell>
                     </td>
                 </ng-template>
             </tr>
@@ -60,7 +60,7 @@
                 <td [attr.colspan]="columnCount" style="border: 0px; padding: 0px;">
                     <div [id]="gridid+'_'+rowidx+'_inner'" [ngClass]="'data-table-children-'+gridid+(collapseChildren=='true'||collapseChildren==true?' data-table-collapse':' ')">
                         <div *ngFor="let child of Children">
-                            <data-table-cell [data]="row" [child]="child"></data-table-cell>
+                            <data-table-cell [data]="row" [child]="child" [rowIndex]="rowidx + (pageno * pagesize)"></data-table-cell>
                         </div>
                     </div>
                 </td>
