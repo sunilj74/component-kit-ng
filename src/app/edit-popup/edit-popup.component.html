@@ -26,3 +26,34 @@
     </button>
   </div>
 </data-table>
+<div *ngIf="showModal" class="table-modal">
+    <div class="table-modal-content">
+      <div class="table-modal-form">
+        <div class="table-modal-form-group">
+          <label class="table-modal-label">ID</label>
+          <input type="text" class="table-modal-input" readonly [(ngModel)]="rowData.id" size="20" maxlength="40">
+        </div>
+        <div class="table-modal-form-group">
+          <label class="table-modal-label">First Name</label>
+          <input type="text" class="table-modal-input" [(ngModel)]="rowData.firstname" size="20" maxlength="40">
+        </div>
+        <div class="table-modal-form-group">
+          <label class="table-modal-label">Last Name</label>
+          <input type="text" class="table-modal-input" [(ngModel)]="rowData.lastname" size="20" maxlength="40">
+        </div>
+        <div class="table-modal-form-group">
+          <label class="table-modal-label">Position</label>
+          <input type="text" class="table-modal-input" [(ngModel)]="rowData.position" size="20" maxlength="40">
+        </div>
+        <div class="table-modal-form-group">
+          <label class="table-modal-label">Vacations</label>
+          <input type="number" class="table-modal-input table-modal-input-number" [(ngModel)]="rowData.vacations" size="2"
+            maxlength="2">
+        </div>
+      </div>
+        <div class="table-modal-action-bar">
+          <button mat-stroked-button color="primary" (click)="apply($event)">Apply</button>
+          <button mat-stroked-button color="warn" (click)="discard($event)">Discard</button>
+        </div>
+  </div>
+</div>

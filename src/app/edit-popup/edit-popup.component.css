@@ -12,3 +12,61 @@
     margin-right: 5px;
     outline: none;
 }
+
+.table-modal {
+    position: fixed;
+    z-index: 100;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5)
+}
+
+.table-modal-content {
+    background-color: #fefefe;
+    margin: 20% auto;
+    width: 500px;
+    padding: 30px;
+    border: 1px solid #888;
+}
+
+.table-modal-form {
+    border: 1px solid black;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 100%;
+}
+
+.table-modal-input {
+    width: 300px;
+    margin: 10px;
+    padding: 10px;
+}
+
+.table-modal-input-number {
+    text-align: right;
+}
+
+.table-modal-form-group {
+    width: 100%;
+}
+
+.table-modal-label {
+    font-family: "Playfair Display";
+    font-size: 18px;
+    display: inline-block;
+    width: 130px;
+    text-align: right;
+}
+
+.table-modal-action-bar {
+    width: 100%;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.table-modal-action-bar button {
+    margin-right: 20px;
+}

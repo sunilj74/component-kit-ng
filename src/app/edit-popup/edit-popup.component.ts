@@ -78,13 +78,17 @@ export class EditPopupComponent implements OnInit {
       vacations: 17
     }
   ];
-
+  currentRow: any = null;
+  rowData: any = {};
+  showModal: boolean = false;
   constructor() {}
 
   ngOnInit() {}
 
   editRow(event, row, rowno){
-
+    this.currentRow = row;
+    this.rowData = {...row};
+    this.showModal = true;
   }
 
   deleteRow(event, row, rowno) {
@@ -94,4 +98,21 @@ export class EditPopupComponent implements OnInit {
         return p!=row;
       });
   }
+
+  apply(event){
+    for(let prop in this.rowData){
+      this.currentRow[prop]=this.rowData[prop];
+    }
+    this.rowData = {};
+    this.currentRow = null;
+    this.showModal = false;
+    this.showModal = false;
+  }
+
+  discard(event) {
+    this.rowData = {};
+    this.currentRow = null;
+    this.showModal = false;
+  }
+
 }

@@ -66,18 +66,54 @@
             <li>
                 <div>Install data-table-kit component in your Angular Application</div>
                 <div>Go to your application folder and run</div>
-                <div class="code-sample">$npm install data-table-kit --save</div>
+                <div class="code-sample">
+                    <div class="right">
+                        <button mat-icon-button color="primary" class="x-large" (click)="handleCopyCode($event,'usage1')">
+                            <mat-icon inline="true">file_copy</mat-icon>
+                        </button>
+                    </div>
+                    <div id="usage1">
+                        {{sample?.install}}
+                    </div>
+                </div>
             </li>
             <li>
                 <div>After installing add module to your Angular module file</div>
                 <div class="code-sample">
-                    {{sample?.import}}
+                    <div class="right">
+                        <button mat-icon-button color="primary" class="x-large" (click)="handleCopyCode($event,'usage2')">
+                            <mat-icon inline="true">file_copy</mat-icon>
+                        </button>
+                    </div>
+                    <div id="usage2">
+                        {{sample?.import}}
+                    </div>
                 </div>
             </li>
             <li>
-                <div>And add this to your component template</div>
+                <div>Add this to your component template</div>
                 <div class="code-sample">
-                    {{sample?.template}}
+                    <div class="right">
+                        <button mat-icon-button color="primary" class="x-large" (click)="handleCopyCode($event,'usage3')">
+                            <mat-icon inline="true">file_copy</mat-icon>
+                        </button>
+                    </div>
+                    <div id="usage3">
+                        {{sample?.template}}
+                    </div>
+                </div>
+            </li>
+            <li>
+                <div>Add this to your component class file</div>
+                <div class="code-sample">
+                    <div class="right">
+                        <button mat-icon-button color="primary" class="x-large" (click)="handleCopyCode($event,'usage4')">
+                            <mat-icon inline="true">file_copy</mat-icon>
+                        </button>
+                    </div>
+                    <div id="usage4">
+                        {{sample?.ts}}
+                    </div>
                 </div>
             </li>
         </ul>
@@ -149,7 +185,7 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
-        <button mat-raised-button color="warn" (click)="handleViewCode($event,'POPUPDATATABLE')">
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'POPUPTABLEEDIT')">
             <mat-icon inline="true">code</mat-icon> View Code
         </button>
         <div class="pb-small">&nbsp;</div>
@@ -166,7 +202,7 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
-        <button mat-raised-button color="warn" (click)="handleViewCode($event,'INLINEDATATABLE')">
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'INLINETABLEEDIT')">
             <mat-icon inline="true">code</mat-icon> View Code
         </button>
         <div class="pb-small">&nbsp;</div>
@@ -183,7 +219,7 @@
                 </div>
             </div>
         </mat-expansion-panel-header>
-        <button mat-raised-button color="warn" (click)="handleViewCode($event,'INLINEDATATABLE')">
+        <button mat-raised-button color="warn" (click)="handleViewCode($event,'FULLTABLEEDIT')">
             <mat-icon inline="true">code</mat-icon> View Code
         </button>
         <div class="pb-small">&nbsp;</div>

@@ -185,6 +185,9 @@ h1, h2, h3, h4, h5 {
 .code-sample {
     font-family: monospace;
     padding: 10px 30px;
+    margin-bottom: 30px;
     letter-spacing: normal;
     white-space: pre;
+    background-color: #f0f0f0;
+    border-top: 1px solid darkslategrey;
 }

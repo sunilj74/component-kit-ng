@@ -32,6 +32,33 @@ export const CODEPATHS: any[] = [
            ]
          },
          {
+           name: "POPUPTABLEEDIT",
+           title: "POPUP TABLE EDIT",
+           paths: [
+             "/app/edit-popup/edit-popup.component.css",
+             "/app/edit-popup/edit-popup.component.html",
+             "/app/edit-popup/edit-popup.component.ts"
+           ]
+         },
+         {
+           name: "INLINETABLEEDIT",
+           title: "INLINE TABLE EDIT",
+           paths: [
+             "/app/edit-inline/edit-inline.component.css",
+             "/app/edit-inline/edit-inline.component.html",
+             "/app/edit-inline/edit-inline.component.ts"
+           ]
+         },
+         {
+           name: "FULLTABLEEDIT",
+           title: "FULL TABLE EDIT",
+           paths: [
+             "/app/edit-full-table/edit-full-table.component.css",
+             "/app/edit-full-table/edit-full-table.component.html",
+             "/app/edit-full-table/edit-full-table.component.ts"
+           ]
+         },
+         {
            name: "BASICTREE",
            title: "BASIC TREE",
            paths: [
