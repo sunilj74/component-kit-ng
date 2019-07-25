@@ -31,6 +31,12 @@
       ],
       "data-tree-kit/*": [
         "dist/data-tree-kit/*"
+      ],
+      "panel-kit": [
+        "dist/panel-kit"
+      ],
+      "panel-kit/*": [
+        "dist/panel-kit/*"
       ]
     }
   }

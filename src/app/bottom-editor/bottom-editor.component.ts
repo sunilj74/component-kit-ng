@@ -47,7 +47,6 @@ export class BottomEditorComponent implements OnInit {
           this.file=this.files[0];
         }
       }
-      console.log("files", this.files);
       this.code$ = this.appService.fetchCodes(codePath.paths);
     }
   }

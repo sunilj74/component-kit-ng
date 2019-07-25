@@ -1,0 +1,11 @@
+.my-tree-node {
+    font-weight: bold;
+    font-size: 12px;
+    color: teal;
+}
+
+.my-tree-leaf {
+    font-weight: normal;
+    font-size: 14px;
+    color: darkslategray;
+}

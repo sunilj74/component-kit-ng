@@ -597,7 +597,6 @@ export class DataTableKitComponent implements AfterContentInit, AfterViewInit {
   }
 
   dblclickRow(event, rowIdx){
-    console.log("edit row "+rowIdx);
     this.editingRow = rowIdx;
   }
 }

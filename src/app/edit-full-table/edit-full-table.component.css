@@ -1,3 +1,12 @@
+.my-table {
+    font-family: 'PT Sans';
+    font-size: 18px;
+}
+
+.my-table td {
+    padding: 5px 2px 2px 2px;
+}
+
 .table-input {
     width: 100%;
 }

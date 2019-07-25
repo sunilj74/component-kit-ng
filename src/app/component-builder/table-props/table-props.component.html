@@ -1,0 +1,26 @@
+<div style="width: 100%; height: 100%;">
+  <div class="prop-table">
+    <div class="row">
+      <div class="heading bind"></div>
+      <div class="heading label">name</div>
+      <div class="heading value">value</div>
+    </div>
+    <prop-edit label="Row Variable" [data-prop]="tableConfig.rowName" no-bind-option="true" tooltip="variable name to be used for row's data"></prop-edit>
+    <prop-edit label="Index Variable" [data-prop]="tableConfig.indexName" no-bind-option="true" tooltip="variable name to be used for row's index"></prop-edit>
+    <prop-edit label="Class Name" [data-prop]="tableConfig.dataTableClass" tooltip="css class for the table"></prop-edit>
+    <prop-edit label="Table Data" [data-prop]="tableConfig.tableData" no-bind-option="true" tooltip="data variable to bind to"></prop-edit>
+    <prop-edit label="Page Size" [data-prop]="tableConfig.pagesize" tooltip="no of rows per page"></prop-edit>
+    <prop-edit label="Data Count" [data-prop]="tableConfig.datacount" tooltip="total row count if using buffered data fetch"></prop-edit>
+    <prop-edit label="Buffered Page No" [data-prop]="tableConfig.bufferedPageNo" ></prop-edit>
+    <prop-edit label="Buffered Page Count" [data-prop]="tableConfig.bufferedPageCount"></prop-edit>
+    <prop-edit label="Allow Resize" [data-prop]="tableConfig.allowResize"></prop-edit>
+    <prop-edit label="Allow Collapse Children" [data-prop]="tableConfig.collapseChildren"></prop-edit>
+    <prop-edit label="Allow Mult-Row Select" [data-prop]="tableConfig.allowMultiselect"></prop-edit>
+    <prop-edit label="Buffered Page Changed" [data-prop]="tableConfig.bufferedPageNoChanged" no-bind-option="true"></prop-edit>
+    <prop-edit label="Sort Order Changed" [data-prop]="tableConfig.sortOrderChanged" no-bind-option="true"></prop-edit>
+    <prop-edit label="Selection Changed" [data-prop]="tableConfig.selectionChanged" no-bind-option="true"></prop-edit>
+    <prop-edit label="Editing Started" [data-prop]="tableConfig.editStarted" no-bind-option="true"></prop-edit>
+    <prop-edit label="Editing Completed" [data-prop]="tableConfig.editCompleted" no-bind-option="true"></prop-edit>
+    <prop-edit label="Editing Cancelled" [data-prop]="tableConfig.editCancelled" no-bind-option="true"></prop-edit>
+  </div>
+</div>

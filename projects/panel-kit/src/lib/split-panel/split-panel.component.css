@@ -1,0 +1,158 @@
+.split-panel {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-collapse: collapse;
+}
+
+.split-panel.row {
+    flex-direction: row;
+}
+
+.split-panel.column {
+    flex-direction: column;
+}
+
+.split-panel-left {
+    width: 50%;
+    height: 100%;
+}
+
+.split-panel-right {
+    flex: 1;
+    height: 100%;
+}
+
+.split-panel-row-stretch {
+    flex: 1;
+    height: 100%;
+}
+
+.split-panel > .splitter-row {
+    width: 1px; 
+    height: 100%;
+    background-color: grey;
+}
+
+.split-panel > .splitter-row.collapsible {
+    padding-top: 10px;
+    width: 10px;
+    background-color: lightgrey;
+}
+
+.split-panel > .splitter-row.resize {
+    cursor: col-resize;
+}
+
+.split-panel-top {
+    width: 100%;
+    height: 50%;
+}
+
+.split-panel-bottom {
+    flex: 1;
+    width: 100%;
+}
+
+.split-panel-column-stretch {
+    flex: 1;
+    width: 100%;
+}
+
+.split-panel > .splitter-column {
+    width: 100%;
+    height: 1px; 
+    background-color: grey;
+}
+
+.split-panel > .splitter-column.collapsible {
+    padding-left: 10px;
+    height: 10px; 
+    background-color: lightgrey;
+}
+
+.split-panel > .splitter-column.resize {
+    cursor: row-resize;
+}
+
+.split-panel-stretch {
+    width: 100%;
+    height: 100%;
+}
+
+.collapse-up {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAOCAIAAACtuNvgAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAWUlEQVQokZ2SUQ7AIAhDV+L9r9z9LQTbxsmX0D40CEg+/2PJKoDvLPtWZvZUY9K0FyvLTionZLIOmWlzH0AySPqSDughZcaRM3cPm5PsvrBow4a7nRTLdRIvsT4qGLm5+W8AAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 6px;
+    margin-top: 1px;
+    margin-left: 5px;
+    padding: 0px;
+    width: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.collapse-down {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAAOCAIAAACtuNvgAAAABnRSTlMA/wD/AP83WBt9AAAACXBIWXMAAA7EAAAOxAGVKw4bAAAAYklEQVQokZ2S2w7AMAhCwez/f5k9dFkWvDRr3xSPkhRKwv8XBwyACwDJVcyXv2M0rSNf5inzRCaNqTEjMzO5kjRIXFq9sjcS883OWuTWloF990Ca5CkpydwswmVD5SKeRfkGMzBE5GopGhMAAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 6px;
+    margin-top: 1px;
+    margin-left: 5px;
+    padding: 0px;
+    width: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.collapse-left {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAASCAYAAABrXO8xAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABtSURBVDhPldDREsAQDETRpP//z9E1qJIsuS9qxpkKNTNhqeo48J7V9ilPW91mhOZ9CFe05sITQhtkKJzxFqEBMwhVmEXIfZxehBCFLArZCBWyK0V4/DGLf1fN4G3GW+w+DsM9F6ITDiFa8bcXKbPNOyEfHtYpAAAAAElFTkSuQmCC);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    font-size: 6px;
+    margin: 0px;
+    margin-top: 5px;
+    padding: 0px;
+    width: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.collapse-right {
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAASCAYAAABrXO8xAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAABvSURBVDhPldHhCoAwCEZR7f3f2SVMQecnev/UokO5sYiQxcy++J/zvS377jUgLa9zDqs63EINYYfdTBUOX9zg51enuJxxguHmjM9xG4ToGKwSdshGeOAEaQFOkeZwgzS4ORY6lhYipDnML3WIiOgA8807IdFb9REAAAAASUVORK5CYII=);
+    background-origin: content-box;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    cursor: pointer;
+    font-size: 6px;
+    margin: 0px;
+    margin-top: 5px;
+    padding: 0px;
+    width: 10px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+}
+
+.split-panel-collapsed {
+    display: none;
+}

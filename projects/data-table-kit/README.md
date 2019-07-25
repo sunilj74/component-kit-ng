@@ -1,6 +1,7 @@
 # data-table-kit
 Create data tables in your Angular apps.  
 [Samples](https://component-kit-ng.codeenthusiast.com/)
+[Builder](https://component-kit-ng.codeenthusiast.com/builder/datatable)
 
 ## Features
 - Sort Columns

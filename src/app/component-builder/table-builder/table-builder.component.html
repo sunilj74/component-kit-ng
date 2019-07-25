@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="right p-sm">
+    <button mat-flat-button color="primary" (click)="refreshAll()">Refresh</button>
+    &nbsp;
+    <button mat-flat-button color="primary" (click)="copyCode()">Copy Code</button>
+    &nbsp;
+    <button mat-flat-button color="primary" (click)="handleAddColumn()">Add Column</button>
+    &nbsp;
+    <button mat-flat-button [disabled]="mySelectedColumn==null" color="warn" (click)="handleDeleteColumn()">Delete Selected Column</button>
+    &nbsp;
+    <button mat-flat-button color="accent" (click)="handleExport()">Export</button>
+    &nbsp;
+    <button mat-flat-button color="accent" (click)="handleImport($event)">Import</button>
+    <input id="importFile" style="display: none;" type="file" accept=".json" (change)="handleFileLoad($event)">
+  </div>
+
+  <h1>Build your DataTable</h1>
+  <div class="thin" style="width: 100%; height: 800px;">
+    <split-panel>
+        <split-panel first>
+          <div first>
+            <data-tree [treeData]="myTreeData" (selectionChanged)="treeNodeSelected($event)">
+            </data-tree>
+          </div>
+          <div second>
+            <ng-container *ngIf="myCurrentNode!=null && myCurrentNode.extras!=null">
+              <table-props *ngIf="myCurrentNode.extras.nodeType==myNodeTypes.DataTable" [datatable-config]="myCurrentNode.extras"></table-props>
+              <column-props *ngIf="myCurrentNode.extras.nodeType==myNodeTypes.Column" [column-config]="myCurrentNode.extras"></column-props>
+            </ng-container>
+          </div>
+        </split-panel>
+        <split-panel second [vertical]="true">
+          <div first class="fill">
+            <textarea id="codeViewer" class="fill" readonly [(ngModel)]="myCode"></textarea>
+          </div>
+          <div second>
+            <data-table [tabledata]="myTableData" allowResize="true" pagesize="20">
+              <ng-template ngFor [ngForOf]="myTableColumns" let-col let-idx="index">
+                <div *data-table-column='let row=data; align:col.align; header: col.headers; sort:col.sort; groupHeader: col.groupHeader; groupColumns: col.groupColumns; width: col.width;'>
+                  <pre>{{row['col'+idx]}}</pre>
+                </div>
+              </ng-template>
+            </data-table>
+          </div>
+        </split-panel>
+    </split-panel>
+  </div>
+</div>

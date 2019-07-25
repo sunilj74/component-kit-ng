@@ -9,6 +9,8 @@ import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor';
 
 import { DataTableKitModule } from 'data-table-kit';
 import { DataTreeKitModule } from 'data-tree-kit';
+import { PanelKitModule } from "panel-kit";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { SharedModule  } from "./shared/shared.module";
@@ -56,7 +58,8 @@ import { EditPopupComponent } from './edit-popup/edit-popup.component';
     SharedModule,
     HttpClientModule,
     DataTableKitModule,
-    DataTreeKitModule
+    DataTreeKitModule,
+    PanelKitModule
   ],
   entryComponents: [
     BottomEditorComponent

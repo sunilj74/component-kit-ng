@@ -25,6 +25,10 @@ const routes: Routes = [
     ]
   },
   {
+    path: 'builder',
+    loadChildren: () => import('./component-builder/component-builder.module').then(m => m.ComponentBuilderModule)
+  },
+  {
     path: '**',
     redirectTo: '/home/datatable',
     pathMatch: 'full'

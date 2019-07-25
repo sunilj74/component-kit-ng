@@ -21,7 +21,7 @@ export class MonacoEditorComponent implements OnInit, OnChanges {
 
   @Input() codes: any = [];
   @Input() file: any;
-  code: string = "";
+  @Input() code: string = "";
   editor: any;
 
   constructor() {}

@@ -92,7 +92,6 @@ export class EditPopupComponent implements OnInit {
   }
 
   deleteRow(event, row, rowno) {
-    console.log(rowno, row);
     this.employees = this.employees.filter(
       (p,i,a)=>{
         return p!=row;

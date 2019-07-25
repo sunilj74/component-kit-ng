@@ -1,0 +1,16 @@
+<div style="width: 100%; height: 100%;">
+  <div class="prop-table">
+    <div class="row">
+      <div class="heading bind"></div>
+      <div class="heading label">name</div>
+      <div class="heading value">value</div>
+    </div>
+    <prop-edit label="Header" [data-prop]="columnConfig.headers" tooltip="column headers can be multiple lines" no-bind-option="true" multiline="true"></prop-edit>
+    <prop-edit label="Align" [data-prop]="columnConfig.align" tooltip="horizontal alignment enter left, center, right or leave empty" no-bind-option="true"></prop-edit>
+    <prop-edit label="Width" [data-prop]="columnConfig.width" tooltip="optional initial width of column" no-bind-option="true"></prop-edit>
+    <prop-edit label="Sort" [data-prop]="columnConfig.sort" tooltip="data values to sort on for this column" no-bind-option="true" multiline="true"></prop-edit>
+    <prop-edit label="Group Header" [data-prop]="columnConfig.groupHeader" tooltip="header for grouped column" no-bind-option="true" multiline="true"></prop-edit>
+    <prop-edit label="Group Columns" [data-prop]="columnConfig.groupColumns" tooltip="number of columns for grouping" no-bind-option="true"></prop-edit>
+    <prop-edit label="Template" [data-prop]="columnConfig.template" tooltip="column template" no-bind-option="true" multiline="true"></prop-edit>
+  </div>
+</div>

@@ -4,12 +4,14 @@ import { DataTableCellComponent } from './data-table-cell/data-table-cell.compon
 import { DataTableFloatComponent } from './data-table-float/data-table-float.component';
 import { DataTableChildDirective } from './data-table-child.directive';
 import { DataTableColumnDirective } from './data-table-column.directive';
-import { BrowserModule } from '@angular/platform-browser';
+//import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [DataTableKitComponent, DataTableCellComponent, DataTableFloatComponent, DataTableChildDirective, DataTableColumnDirective],
   imports: [
-    BrowserModule
+    //BrowserModule,
+    CommonModule
   ],
   exports: [
     DataTableKitComponent,

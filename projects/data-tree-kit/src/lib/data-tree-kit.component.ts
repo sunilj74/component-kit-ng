@@ -54,6 +54,18 @@ export class DataTreeKitComponent implements OnInit {
     }
   }
 
+  nodeAnchorStyle(node){
+    let nodeStyle = { 
+      width: '0px', 
+      verticalAlign: 'top', 
+      color: 'gray' 
+    };
+    if (node.subGroups != null || node.data != null){
+      nodeStyle.width = "24px";
+    }
+    return nodeStyle;
+  }
+
   uuidv4() {
     return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
       var r = (Math.random() * 16) | 0,

@@ -1,0 +1,12 @@
+<div class="row" [title]="toolTip">
+  <div class="cell bind">
+    <input *ngIf="noBindOption==false" type="checkbox" [(ngModel)]="dataProp.bind" title="check to bind this property">
+  </div>
+  <div class="cell label">{{propLabel}}</div>
+  <div *ngIf="multiline==false" class="cell value">
+    <input type="text" class="edit-input" [(ngModel)]="dataProp.value" size="40" maxlength="40">
+  </div>
+  <div *ngIf="multiline" class="cell value">
+    <textarea class="edit-input" [(ngModel)]="dataProp.value" rows="2"></textarea>
+  </div>
+</div>

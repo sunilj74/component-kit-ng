@@ -1,0 +1,21 @@
+<div [ngClass]="'split-panel '+(vertical?'column':'row')">
+  <!-- <div #firstpane [ngClass]="(vertical?(collapsed==2?'split-panel-column-stretch':'split-panel-top'):(collapsed==2?'split-panel-row-stretch':'split-panel-left'))+(collapsed==1?' split-panel-collapsed':'')"> -->
+  <div #firstpane [ngStyle]="styleFirst">
+    <ng-content select="[first]"></ng-content>
+  </div>
+  <div [ngClass]="(vertical?'splitter-column':'splitter-row')+(allowResize?' resize':'')+(allowCollapseFirst||allowCollapseSecond?' collapsible':'')" (drag)="resize($event)" (mousedown)="resizeStart($event)"
+    (mouseup)="resizeEnd($event)">
+    <ng-container *ngIf="vertical">
+      <div *ngIf="allowCollapseFirst&&collapsed!=1" class="collapse-up" (click)="toggleCollapse($event, true)">&nbsp;</div>
+      <div *ngIf="allowCollapseSecond&&collapsed!=2" class="collapse-down" (click)="toggleCollapse($event, false)">&nbsp;</div>
+    </ng-container>
+    <ng-container *ngIf="!vertical">
+      <div *ngIf="allowCollapseFirst&&collapsed!=1" class="collapse-left" (click)="toggleCollapse($event, true)">&nbsp;</div>
+      <div *ngIf="allowCollapseSecond&&collapsed!=2" class="collapse-right" (click)="toggleCollapse($event, false)">&nbsp;</div>
+    </ng-container>
+  </div>
+  <!-- <div [ngClass]="(vertical?'split-panel-bottom':'split-panel-right')+(collapsed==2?' split-panel-collapsed':'')"> -->
+  <div [ngStyle]="styleSecond">
+    <ng-content select="[second]"></ng-content>
+  </div>
+</div>

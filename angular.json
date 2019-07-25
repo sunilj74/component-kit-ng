@@ -191,6 +191,41 @@
           }
         }
       }
+    },
+    "panel-kit": {
+      "projectType": "library",
+      "root": "projects/panel-kit",
+      "sourceRoot": "projects/panel-kit/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/panel-kit/tsconfig.lib.json",
+            "project": "projects/panel-kit/ng-package.json"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/panel-kit/src/test.ts",
+            "tsConfig": "projects/panel-kit/tsconfig.spec.json",
+            "karmaConfig": "projects/panel-kit/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/panel-kit/tsconfig.lib.json",
+              "projects/panel-kit/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }},
   "defaultProject": "component-kit-ng"
 }
