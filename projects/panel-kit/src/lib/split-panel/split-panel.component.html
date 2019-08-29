@@ -3,8 +3,8 @@
   <div #firstpane [ngStyle]="styleFirst">
     <ng-content select="[first]"></ng-content>
   </div>
-  <div [ngClass]="(vertical?'splitter-column':'splitter-row')+(allowResize?' resize':'')+(allowCollapseFirst||allowCollapseSecond?' collapsible':'')" (drag)="resize($event)" (mousedown)="resizeStart($event)"
-    (mouseup)="resizeEnd($event)">
+  <div [ngClass]="(vertical?'splitter-column':'splitter-row')+(allowResize?' resize':'')+(allowCollapseFirst||allowCollapseSecond?' collapsible':'')" (mousemove)="resize($event)" (mousedown)="resizeStart($event)"
+    (mouseup)="resizeEnd($event)" (mouseout)="resizeEnd($event)">
     <ng-container *ngIf="vertical">
       <div *ngIf="allowCollapseFirst&&collapsed!=1" class="collapse-up" (click)="toggleCollapse($event, true)">&nbsp;</div>
       <div *ngIf="allowCollapseSecond&&collapsed!=2" class="collapse-down" (click)="toggleCollapse($event, false)">&nbsp;</div>

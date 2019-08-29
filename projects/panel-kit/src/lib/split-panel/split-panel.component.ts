@@ -138,6 +138,7 @@ export class SplitPanelComponent implements OnInit, OnChanges {
     if (!this.allowResize) {
       return;
     }
+    this.resize(event);
     this.resizeInfo = null;
   }
 

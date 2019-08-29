@@ -20,9 +20,10 @@ export class DataTableColumnDirective {
   private _header: string[];
 
   @Input("data-table-columnSort") set sort(values: string[]) {
-    if (Array.isArray(values)) {
-      this._sortfields = values;
-    } else {
+    if (values == null || Array.isArray(values)){
+      this._sortfields = values
+    } 
+    else {
       this._sortfields = [values];
     }
   }
@@ -32,7 +33,20 @@ export class DataTableColumnDirective {
   private _sortfields: string[];
 
   @Input("data-table-columnGroupColumns") groupColumns: number = 0;
-  @Input("data-table-columnGroupHeader") groupHeader: any;
+  @Input("data-table-columnGroupHeader") set groupHeader(values: string[]){
+    if (values == null || Array.isArray(values)) {
+      this._groupHeaders = values;
+    }
+    else {
+      this._groupHeaders = [values];
+    }
+
+  }
+  get groupHeader(): string[] {
+    return this._groupHeaders;
+  }
+  private _groupHeaders: string[];
+
   @Input("data-table-columnSortFieldName") sortFieldName: string;
   @Input("data-table-columnWidth") columnWidth: string;
 
